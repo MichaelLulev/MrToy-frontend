@@ -22,9 +22,9 @@ export function Filter() {
                 <label>
                     <span>Stock: </span>
                     <select name="stock" className="filter-stock" value={filterBy.stock} onChange={onChangeFilterBy}>
-                        <option value={null}>Any</option>
-                        <option value={true}>In stock</option>
-                        <option value={false}>Out of stock</option>
+                        <option value="any">Any</option>
+                        <option value="yes">In stock</option>
+                        <option value="no">Out of stock</option>
                     </select>
                 </label>
             </section>

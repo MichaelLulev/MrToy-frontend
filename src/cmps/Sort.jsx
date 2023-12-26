@@ -27,6 +27,7 @@ export function Sort() {
                     >
                         <option value="name">Name</option>
                         <option value="description">Description</option>
+                        <option value="price">Price</option>
                     </select>
                 </label>
                 <label>

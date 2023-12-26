@@ -16,7 +16,7 @@ export const toyService = {
 
 
 function query(filterBy={}, sortBy={}, pageInfo={}) {
-    return httpService.get(URL_END_POINT_TOY, { params: { ...filterBy, ...sortBy, ...pageInfo } })
+    return httpService.get(URL_END_POINT_TOY, { ...filterBy, ...sortBy, ...pageInfo })
 }
 
 function get(toyId) {
@@ -35,7 +35,7 @@ function remove(toyId) {
 function getDefaultFilterBy() {
     return {
         text: '',
-        stock: 0,
+        stock: 'any',
     }
 }
 
