@@ -1,14 +1,14 @@
 import { useSelector } from "react-redux"
-import { setToyFilterBy } from "../store/actions/toy.actions"
+import { setFilterBy } from "../store/actions/toy.actions"
 
 
 export function Filter() {
-    const filterBy = useSelector(state => state.toyModule.toyFilterBy)
+    const filterBy = useSelector(state => state.toyModule.filterBy)
 
     function onChangeFilterBy(ev) {
         const name = ev.target.name
         const value = ev.target.value
-        setToyFilterBy({ [name]: value })
+        setFilterBy({ [name]: value })
     }
 
     return (

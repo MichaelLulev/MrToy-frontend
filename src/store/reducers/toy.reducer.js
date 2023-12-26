@@ -12,8 +12,8 @@ export const SET_TOY_SORT_BY = 'SET_TOY_SORT_BY'
 
 const initialState = {
     toys: [],
-    toyFilterBy: toyService.getDefaultFilterBy(),
-    toySortBy: toyService.getDefaultSortBy(),
+    filterBy: toyService.getDefaultFilterBy(),
+    sortBy: toyService.getDefaultSortBy(),
 }
 
 
@@ -36,12 +36,12 @@ export function toyReducer(state=initialState, action={}) {
             return { ...state, toys }
 
         case SET_TOY_FILTER_BY:
-            var toyFilterBy = { ...state.toyFilterBy, ...action.toyFilterBy }
-            return { ...state, toyFilterBy }
+            var filterBy = { ...state.filterBy, ...action.filterBy }
+            return { ...state, filterBy }
 
         case SET_TOY_SORT_BY:
-            var toySortBy = { ...state.toySortBy, ...action.toySortBy }
-            return { ...state, toySortBy }
+            var sortBy = { ...state.sortBy, ...action.sortBy }
+            return { ...state, sortBy }
 
         default:
             return state

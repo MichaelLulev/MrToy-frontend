@@ -1,16 +1,16 @@
 import { useSelector } from "react-redux"
 
-import { setToySortBy } from "../store/actions/toy.actions"
+import { setSortBy } from "../store/actions/toy.actions"
 
 
 export function Sort() {
-    const sortBy = useSelector(state => state.toyModule.toySortBy)
+    const sortBy = useSelector(state => state.toyModule.sortBy)
 
     function onChangeSortBy(ev) {
         const name = ev.target.name
         let value = ev.target.value
         if (name === 'isAscending') value = ev.target.checked
-        setToySortBy({ [name]: value })
+        setSortBy({ [name]: value })
     }
 
     return (

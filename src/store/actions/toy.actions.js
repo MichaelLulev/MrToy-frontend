@@ -4,9 +4,9 @@ import { store } from "../store.js"
 
 
 export function queryToys() {
-    const toyFilterBy = store.getState().toyModule.toyFilterBy
-    const toySortBy = store.getState().toyModule.toySortBy
-    return toyService.query(toyFilterBy, toySortBy)
+    const filterBy = store.getState().toyModule.filterBy
+    const sortBy = store.getState().toyModule.sortBy
+    return toyService.query(filterBy, sortBy)
         .then(toys => {
             store.dispatch({ type: SET_TOYS, toys })
         })
@@ -33,10 +33,10 @@ export function addToy(newToy) {
         })
 }
 
-export function setToyFilterBy(toyFilterBy) {
-    store.dispatch({ type: SET_TOY_FILTER_BY, toyFilterBy })
+export function setFilterBy(filterBy) {
+    store.dispatch({ type: SET_TOY_FILTER_BY, filterBy })
 }
 
-export function setToySortBy(toySortBy) {
-    store.dispatch({ type: SET_TOY_SORT_BY, toySortBy })
+export function setSortBy(sortBy) {
+    store.dispatch({ type: SET_TOY_SORT_BY, sortBy })
 }

@@ -17,7 +17,6 @@ export const toyService = {
 
 function query(filterBy={}, sortBy={}, pageInfo={}) {
     return httpService.get(URL_END_POINT_TOY, { params: { ...filterBy, ...sortBy, ...pageInfo } })
-        .then(([toys, isLastPage, lastPage]) => [toys, isLastPage, lastPage])
 }
 
 function get(toyId) {
