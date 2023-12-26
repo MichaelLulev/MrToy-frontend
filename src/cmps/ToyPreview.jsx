@@ -4,7 +4,6 @@ import { useSelector } from "react-redux"
 
 export function ToyPreview({ toy }) {
     const loggedInUser = useSelector(state => state.userModule.loggedInUser)
-    console.log(loggedInUser)
     
     return (
         <article className="toy-preview">

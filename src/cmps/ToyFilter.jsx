@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import { setFilterBy } from "../store/actions/toy.actions"
 
 
-export function Filter() {
+export function ToyFilter() {
     const filterBy = useSelector(state => state.toyModule.filterBy)
 
     function onChangeFilterBy(ev) {

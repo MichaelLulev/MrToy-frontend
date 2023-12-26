@@ -1,22 +1,26 @@
 import { useEffect } from "react"
-import { ToyList } from "../cmps/ToyList"
-import { queryToys } from "../store/actions/toy.actions"
-import { setErrorMessageText } from "../store/actions/app.actions"
 import { useSelector } from "react-redux"
+
+import { ToyPage } from "../cmps/ToyPage.jsx"
+import { ToyList } from "../cmps/ToyList.jsx"
+import { queryToys } from "../store/actions/toy.actions.js"
+import { setErrorMessageText } from "../store/actions/app.actions.js"
 
 
 export function ToyIndex() {
     const filterBy = useSelector(state => state.toyModule.filterBy)
     const sortBy = useSelector(state => state.toyModule.sortBy)
+    const pageInfo = useSelector(state => state.toyModule.pageInfo)
 
     useEffect(() => {
         queryToys()
             .catch(err => setErrorMessageText(err))
-    }, [filterBy, sortBy])
+    }, [filterBy, sortBy, pageInfo])
 
     return (
         <>
             <h2>Toy Index</h2>
+            <ToyPage />
             <ToyList />
         </>
     )

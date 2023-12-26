@@ -1,6 +1,6 @@
 import { Login } from "./Login.jsx"
-import { Filter } from "./Filter.jsx"
-import { Sort } from "./Sort.jsx"
+import { ToyFilter } from "./ToyFilter.jsx"
+import { ToySort } from "./ToySort.jsx"
 
 
 export function Header() {
@@ -8,8 +8,8 @@ export function Header() {
     return (
         <header>
             <Login />
-            <Filter />
-            <Sort />
+            <ToyFilter />
+            <ToySort />
         </header>
     )
 }

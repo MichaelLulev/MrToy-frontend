@@ -12,6 +12,7 @@ export const toyService = {
     getDefaultFilterBy,
     getDefaultSortBy,
     getDefaultPageInfo,
+    getDefaultToyPage,
 }
 
 
@@ -48,7 +49,15 @@ function getDefaultSortBy() {
 
 function getDefaultPageInfo() {
     return {
-        idx: 0,
+        pageNum: 1,
         toysPerPage: 4,
+    }
+}
+
+function getDefaultToyPage() {
+    return {
+        toys: [],
+        pageNum: 1,
+        lastPageNum: 1,
     }
 }

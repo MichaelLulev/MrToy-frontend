@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { setSortBy } from "../store/actions/toy.actions"
 
 
-export function Sort() {
+export function ToySort() {
     const sortBy = useSelector(state => state.toyModule.sortBy)
 
     function onChangeSortBy(ev) {

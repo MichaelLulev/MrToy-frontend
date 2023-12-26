@@ -3,7 +3,7 @@ import { ToyPreview } from "./ToyPreview"
 
 
 export function ToyList() {
-    const toys = useSelector(state => state.toyModule.toys)
+    const toys = useSelector(state => state.toyModule.toyPage.toys)
 
     return (
         <section className="toy-list">
