@@ -1,6 +1,6 @@
+import { NavLink } from "react-router-dom"
+
 import { Login } from "./Login.jsx"
-import { ToyFilter } from "./ToyFilter.jsx"
-import { ToySort } from "./ToySort.jsx"
 
 
 export function Header() {
@@ -8,8 +8,10 @@ export function Header() {
     return (
         <header>
             <Login />
-            <ToyFilter />
-            <ToySort />
+            <nav>
+                <NavLink to="/">Home</NavLink>
+                <NavLink to="/toy">Toys</NavLink>
+            </nav>
         </header>
     )
 }

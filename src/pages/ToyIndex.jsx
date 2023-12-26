@@ -1,6 +1,8 @@
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 
+import { ToyFilter } from "../cmps/ToyFilter.jsx"
+import { ToySort } from "../cmps/ToySort.jsx"
 import { ToyPage } from "../cmps/ToyPage.jsx"
 import { ToyList } from "../cmps/ToyList.jsx"
 import { queryToys } from "../store/actions/toy.actions.js"
@@ -20,6 +22,8 @@ export function ToyIndex() {
     return (
         <>
             <h2>Toy Index</h2>
+            <ToyFilter />
+            <ToySort />
             <ToyPage />
             <ToyList />
         </>
