@@ -58,11 +58,10 @@ function updateBalance(diff) {
 }
 
 function _setLoggedInUser(user) {
-    const { _id, fullName, username, balance } = user
-    const userToSet = { _id, fullName, username, balance }
-    const strUserToSet = JSON.stringify(userToSet)
-    sessionStorage.setItem(STORAGE_KEY_LOGGED_IN, strUserToSet)
-    return userToSet
+    delete user.password
+    const strUser = JSON.stringify(user)
+    sessionStorage.setItem(STORAGE_KEY_LOGGED_IN, strUser)
+    return user
 }
 
 function logout() {
