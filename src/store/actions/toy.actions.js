@@ -10,18 +10,12 @@ export function queryToys() {
         .then(toys => {
             store.dispatch({ type: SET_TOYS, toys })
         })
-        .catch(err => {
-            console.error(err)
-        })
 }
 
 export function updateToy(updatedToy) {
     return toyService.save(updatedToy)
         .then(toy => {
             store.dispatch({ type: UPDATE_TOY, toy })
-        })
-        .catch(err => {
-            console.error(err)
         })
 }
 
@@ -30,18 +24,12 @@ export function removeToy(toy) {
         .then(() => {
             store.dispatch({ type: REMOVE_TOY, toy })
         })
-        .catch(err => {
-            console.error(err)
-        })
 }
 
 export function addToy(newToy) {
     return toyService.save(newToy)
         .then(toy => {
             store.dispatch({ type: ADD_TOY, toy })
-        })
-        .catch(err => {
-            console.error(err)
         })
 }
 

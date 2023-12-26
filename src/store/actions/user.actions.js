@@ -8,18 +8,13 @@ export function queryUsers() {
         .then(users => {
             store.dispatch({ type: SET_USERS, users })
         })
-        .catch(err => {
-            console.error(err)
-        })
 }
 
 export function signup(formUser) {
     return userService.signup(formUser)
         .then(user => {
             store.dispatch({ type: SET_LOGGED_IN_USER, user })
-        })
-        .catch(err => {
-            console.error(err)
+            return user
         })
 }
 
@@ -27,18 +22,14 @@ export function login(formUser) {
     return userService.login(formUser)
         .then(user => {
             store.dispatch({ type: SET_LOGGED_IN_USER, user })
-        })
-        .catch(err => {
-            console.error(err)
+            return user
         })
 }
 
 export function logout() {
     return userService.logout()
-        .then(() => {
+        .then(user => {
             store.dispatch({ type: SET_LOGGED_IN_USER, user: null })
-        })
-        .catch(err => {
-            console.error(err)
+            return user
         })
 }

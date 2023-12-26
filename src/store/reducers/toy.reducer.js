@@ -1,20 +1,21 @@
 import { toyService } from "../../services/toy.service.js"
 
-// Todo actions
+
 export const SET_TOYS = 'SET_TOYS'
 export const ADD_TOY = 'ADD_TOY'
 export const UPDATE_TOY = 'UPDATE_TOY'
 export const REMOVE_TOY = 'REMOVE_TOY'
 
-// Filtering and sorting actions
 export const SET_TOY_FILTER_BY = 'SET_TOY_FILTER_BY'
 export const SET_TOY_SORT_BY = 'SET_TOY_SORT_BY'
 
+
 const initialState = {
     toys: [],
-    toyFilterBy: toyService.getDefaultFilter(),
+    toyFilterBy: toyService.getDefaultFilterBy(),
     toySortBy: toyService.getDefaultSortBy(),
 }
+
 
 export function toyReducer(state=initialState, action={}) {
     

@@ -1,13 +1,15 @@
 import { userService } from "../../services/user.service.js"
 
-// User actions
+
 export const SET_LOGGED_IN_USER = 'SET_LOGGED_IN_USER'
 export const SET_USERS = 'SET_USERS'
+
 
 const initialState = {
     loggedInUser: userService.getLoggedInUser(),
     users: [],
 }
+
 
 export function userReducer(state=initialState, action={}) {
     

@@ -3,11 +3,12 @@ import Axios from 'axios'
 
 const BASE_URL = process.env.NODE_ENV === 'production'
     ? '/api/'
-    : '//localhose:3030/api/'
+    : '//localhost:3030/api/'
 
 const axios = Axios.create({
     withCredentials: true,
 })
+
 
 export const httpService = {
     get:    (endpoint, data) => ajax(endpoint, 'GET', data),
@@ -15,6 +16,7 @@ export const httpService = {
     put:    (endpoint, data) => ajax(endpoint, 'PUT', data),
     delete: (endpoint, data) => ajax(endpoint, 'DELETE', data),
 }
+
 
 async function ajax(endpoint, method='GET', data=null) {
     try {
@@ -26,8 +28,7 @@ async function ajax(endpoint, method='GET', data=null) {
         })
         return res.data
     } catch (err) {
-        console.error(`Had issue ${method}ing to the backend, endpoint: ${endpoint}, with data:`, data)
-        console.dir(err)
+        console.error(err, data)
         if (err.response && err.response.status === 401) {
             sessionStorage.clear()
         }

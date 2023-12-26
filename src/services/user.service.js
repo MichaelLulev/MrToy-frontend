@@ -1,10 +1,10 @@
-import { storageService } from "./async-storage.service.js"
 import { httpService } from "./http.service.js"
-import { WEEK, utilService } from "./util.service.js"
 
-const BASE_AUTH_URL = 'auth/'
-const BASE_USER_URL = 'user/'
+
+const URL_END_POINT_AUTH = 'auth/'
+const URL_END_POINT_USER = 'user/'
 const STORAGE_KEY_LOGGED_IN = 'loggedInUser'
+
 
 export const userService = {
     query,
@@ -17,17 +17,18 @@ export const userService = {
     getNewUser,
 }
 
+
 function query() {
-    return httpService.get(BASE_USER_URL)
+    return httpService.get(URL_END_POINT_USER)
 }
 
 function get(userId) {
-    return httpService.get(BASE_USER_URL + userId)
+    return httpService.get(URL_END_POINT_USER + userId)
 }
 
 function signup({ fullName, username, password }) {
     const user = { fullName, username, password, balance: 10000 }
-    return httpService.post(BASE_AUTH_URL + 'signup', user)
+    return httpService.post(URL_END_POINT_AUTH + 'signup', user)
         .then(user => {
             if (user) return _setLoggedInUser(user)
             else return Promise.reject('Invalid signup')
@@ -35,7 +36,7 @@ function signup({ fullName, username, password }) {
 }
 
 function login({ username, password }) {
-    return httpService.post(BASE_AUTH_URL + 'login', { username, password })
+    return httpService.post(URL_END_POINT_AUTH + 'login', { username, password })
         .then(user => {
             if (user) return _setLoggedInUser(user)
             else return Promise.reject('Invalid login')
@@ -49,7 +50,7 @@ function getLoggedInUser() {
 
 function updateBalance(diff) {
     if (getLoggedInUser().balance + diff < 0) return Promise.reject('Not enough credit')
-    return httpService.put(BASE_USER_URL, { diff })
+    return httpService.put(URL_END_POINT_USER, { diff })
         .then(user => {
             _setLoggedInUser(user)
             return user.balance
@@ -65,15 +66,17 @@ function _setLoggedInUser(user) {
 }
 
 function logout() {
-    return httpService.post(BASE_USER_URL + 'logout')
-        .then(() => sessionStorage.removeItem(STORAGE_KEY_LOGGED_IN))
+    return httpService.post(URL_END_POINT_AUTH + 'logout')
+        .then(user => {
+            sessionStorage.removeItem(STORAGE_KEY_LOGGED_IN)
+            return user
+        })
 }
 
 function getNewUser() {
-    const newUser = {
+    return {
         fullName: '',
         username: '',
         password: '',
     }
-    return newUser
 }
