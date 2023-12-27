@@ -9,10 +9,11 @@ export const toyService = {
     get,
     save,
     remove,
+    getLabels,
+    getDefaultToyPage,
     getDefaultFilterBy,
     getDefaultSortBy,
     getDefaultPageInfo,
-    getDefaultToyPage,
 }
 
 
@@ -33,10 +34,23 @@ function remove(toyId) {
     return httpService.delete(URL_END_POINT_TOY + `/${toyId}`)
 }
 
+function getLabels() {
+    return httpService.get(URL_END_POINT_TOY + '/label')
+}
+
+function getDefaultToyPage() {
+    return {
+        toys: [],
+        pageNum: 1,
+        lastPageNum: 1,
+    }
+}
+
 function getDefaultFilterBy() {
     return {
         text: '',
         stock: 'any',
+        label: 'any',
     }
 }
 
@@ -51,13 +65,5 @@ function getDefaultPageInfo() {
     return {
         pageNum: 1,
         toysPerPage: 4,
-    }
-}
-
-function getDefaultToyPage() {
-    return {
-        toys: [],
-        pageNum: 1,
-        lastPageNum: 1,
     }
 }

@@ -1,6 +1,7 @@
 import { toyService } from "../../services/toy.service.js"
 
 
+export const SET_LABELS = 'SET_LABELS'
 export const SET_TOY_PAGE = 'SET_TOY_PAGE'
 export const ADD_TOY = 'ADD_TOY'
 export const UPDATE_TOY = 'UPDATE_TOY'
@@ -12,16 +13,20 @@ export const SET_TOY_PAGE_INFO = 'SET_TOY_PAGE_INFO'
 
 
 const initialState = {
+    labels: [],
+    toyPage: toyService.getDefaultToyPage(),
     filterBy: toyService.getDefaultFilterBy(),
     sortBy: toyService.getDefaultSortBy(),
     pageInfo: toyService.getDefaultPageInfo(),
-    toyPage: toyService.getDefaultToyPage(),
 }
 
 
 export function toyReducer(state=initialState, action={}) {
     
     switch (action.type) {
+        case SET_LABELS:
+            return { ...state, labels: action.labels}
+            
         case SET_TOY_PAGE:
             return { ...state, toyPage: action.toyPage}
 

@@ -10,7 +10,9 @@ export function ToyPreview({ toy }) {
         <article className="toy-preview">
             <h3 className="toy-name">{toy.name}</h3>
             <p className="toy-description">{toy.description}</p>
+            <p className="toy-labels">{toy.labels.join(', ')}</p>
             <p className="toy-price">{toy.price}</p>
+            <Link to={`/toy/${toy._id}`}>Details</Link>
             {
                 loggedInUser && loggedInUser.isAdmin &&
                 <>
@@ -18,7 +20,6 @@ export function ToyPreview({ toy }) {
                     <button className="remove" onClick={() => removeToy(toy._id)}>Remove</button>
                 </>
             }
-            <Link to={`/toy/${toy._id}`}>Details</Link>
         </article>
     )
 }

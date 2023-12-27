@@ -49,43 +49,45 @@ export function ToyEdit() {
         }
         {
             toy &&
-            <form onSubmit={onSubmitToy}>
-                <label>
-                    <span>Name: </span>
-                    <input
-                        className="input-toy-name"
-                        type="text"
-                        name="name"
-                        value={toy.name}
-                        onChange={onChangeToy}
-                    />
-                </label>
-                <label>
-                    <span>Description: </span>
-                    <textarea
-                        className="input-toy-description"
-                        name="description"
-                        value={toy.description}
-                        rows="5"
-                        onChange={onChangeToy}
-                    ></textarea>
-                </label>
-                <label>
-                    <span>Price: </span>
-                    <input
-                        className="input-toy-price"
-                        type="number"
-                        name="price"
-                        value={toy.price}
-                        step="0.01"
-                        min="0"
-                        onChange={onChangeToy}
-                    />
-                </label>
-                <button className="submit">Submit</button>
-            </form>
+            <>
+                <form onSubmit={onSubmitToy}>
+                    <label>
+                        <span>Name: </span>
+                        <input
+                            className="input-toy-name"
+                            type="text"
+                            name="name"
+                            value={toy.name}
+                            onChange={onChangeToy}
+                        />
+                    </label>
+                    <label>
+                        <span>Description: </span>
+                        <textarea
+                            className="input-toy-description"
+                            name="description"
+                            value={toy.description}
+                            rows="5"
+                            onChange={onChangeToy}
+                        ></textarea>
+                    </label>
+                    <label>
+                        <span>Price: </span>
+                        <input
+                            className="input-toy-price"
+                            type="number"
+                            name="price"
+                            value={toy.price}
+                            step="0.01"
+                            min="0"
+                            onChange={onChangeToy}
+                        />
+                    </label>
+                    <button className="submit">Submit</button>
+                </form>
+                <Link to={`/toy/${toy._id}`}>Details</Link>
+            </>
         }
-            <Link to="/toy">Back</Link>
         </>
     )
 }

@@ -5,7 +5,7 @@ import { ToyFilter } from "../cmps/ToyFilter.jsx"
 import { ToySort } from "../cmps/ToySort.jsx"
 import { ToyPage } from "../cmps/ToyPage.jsx"
 import { ToyList } from "../cmps/ToyList.jsx"
-import { queryToys } from "../store/actions/toy.actions.js"
+import { queryToys, setLabels } from "../store/actions/toy.actions.js"
 import { setErrorMessageText } from "../store/actions/app.actions.js"
 
 
@@ -16,6 +16,8 @@ export function ToyIndex() {
 
     useEffect(() => {
         queryToys()
+            .catch(err => setErrorMessageText(err))
+        setLabels()
             .catch(err => setErrorMessageText(err))
     }, [filterBy, sortBy, pageInfo])
 

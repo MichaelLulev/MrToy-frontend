@@ -29,9 +29,6 @@ async function ajax(endpoint, method='GET', data=null) {
         return res.data
     } catch (err) {
         console.error(err, data)
-        if (err.response && err.response.status === 401) {
-            sessionStorage.clear()
-        }
         throw err
     }
 }

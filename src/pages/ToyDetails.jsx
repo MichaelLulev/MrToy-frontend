@@ -52,7 +52,6 @@ export function ToyDetails() {
                 }
             </>
         }
-            <Link to="/toy">Back</Link>
         </>
     )
 }
