@@ -22,9 +22,8 @@ export function userReducer(state=initialState, action={}) {
             return { ...state, users: action.users}
 
         case UPDATE_USER:
-            var loggedInUser = action.user._id === loggedInUser._id ? action.user : loggedInUser
             var users = state.users.map(user => user._id === action.user ? action.user : user)
-            return { ...state, loggedInUser, users }
+            return { ...state, users }
 
         default:
             return state

@@ -27,9 +27,11 @@ export function login(formUser) {
 }
 
 export function updateUser(user) {
-    return userService.save(user)
+    return userService.updateUser(user)
         .then(user => {
             store.dispatch({ type: UPDATE_USER, user })
+            store.dispatch({ type: SET_LOGGED_IN_USER, user: userService.getLoggedInUser() })
+            return user
         })
 }
 

@@ -22,17 +22,23 @@ export function queryToys() {
 
 export function addToy(newToy) {
     return toyService.save(newToy)
-        .then(() => queryToys())
+        .then(toy => {
+            return queryToys().then(() => toy)
+        })
 }
 
 export function updateToy(updatedToy) {
     return toyService.save(updatedToy)
-        .then(() => queryToys())
+        .then(toy => {
+            return queryToys().then(() => toy)
+        })
 }
 
 export function removeToy(toyId) {
     return toyService.remove(toyId)
-        .then(() => queryToys())
+        .then(toy => {
+            return queryToys().then(() => toy)
+        })
 }
 
 export function setFilterBy(filterBy) {

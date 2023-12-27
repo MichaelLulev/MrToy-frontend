@@ -1,8 +1,8 @@
 import { httpService } from "./http.service.js"
 
 
-const URL_END_POINT_AUTH = 'auth/'
-const URL_END_POINT_USER = 'user/'
+const URL_END_POINT_AUTH = 'auth'
+const URL_END_POINT_USER = 'user'
 const STORAGE_KEY_LOGGED_IN = 'loggedInUser'
 
 
@@ -12,7 +12,7 @@ export const userService = {
     signup,
     login,
     getLoggedInUser,
-    updateBalance,
+    updateUser,
     logout,
     getNewUser,
 }
@@ -26,17 +26,16 @@ function get(userId) {
     return httpService.get(URL_END_POINT_USER + userId)
 }
 
-function signup({ fullName, username, password }) {
-    const user = { fullName, username, password, balance: 10000 }
-    return httpService.post(URL_END_POINT_AUTH + 'signup', user)
+function signup(user) {
+    return httpService.post(URL_END_POINT_AUTH + '/signup', user)
         .then(user => {
             if (user) return _setLoggedInUser(user)
             else return Promise.reject('Invalid signup')
         })
 }
 
-function login({ username, password }) {
-    return httpService.post(URL_END_POINT_AUTH + 'login', { username, password })
+function login(user) {
+    return httpService.post(URL_END_POINT_AUTH + '/login', user)
         .then(user => {
             if (user) return _setLoggedInUser(user)
             else return Promise.reject('Invalid login')
@@ -48,24 +47,22 @@ function getLoggedInUser() {
     return JSON.parse(strLoggedInUser)
 }
 
-function updateBalance(diff) {
-    if (getLoggedInUser().balance + diff < 0) return Promise.reject('Not enough credit')
-    return httpService.put(URL_END_POINT_USER, { diff })
+function updateUser(user) {
+    return httpService.put(URL_END_POINT_USER + '/update', user)
         .then(user => {
-            _setLoggedInUser(user)
-            return user.balance
+            if (getLoggedInUser()._id === user._id) _setLoggedInUser(user)
+            return user
         })
 }
 
 function _setLoggedInUser(user) {
-    delete user.password
     const strUser = JSON.stringify(user)
     sessionStorage.setItem(STORAGE_KEY_LOGGED_IN, strUser)
     return user
 }
 
 function logout() {
-    return httpService.post(URL_END_POINT_AUTH + 'logout')
+    return httpService.post(URL_END_POINT_AUTH + '/logout')
         .then(user => {
             sessionStorage.removeItem(STORAGE_KEY_LOGGED_IN)
             return user
