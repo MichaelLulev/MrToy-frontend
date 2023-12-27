@@ -12,6 +12,7 @@ export function ToyPreview({ toy }) {
             <p className="toy-description">{toy.description}</p>
             <p className="toy-labels">{toy.labels.join(', ')}</p>
             <p className="toy-price">{toy.price}</p>
+            <p className="toy-stock">Left in stock: <span>{toy.stock}</span></p>
             <Link to={`/toy/${toy._id}`}>Details</Link>
             {
                 loggedInUser && loggedInUser.isAdmin &&

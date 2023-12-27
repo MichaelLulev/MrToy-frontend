@@ -28,7 +28,7 @@ export function ToyPage() {
             >
                 Previous
             </button>
-            <span className="page-num">{pageNum}</span>
+            <span className="page-num">{pageNum}/{toyPage.lastPageNum}</span>
             <button
                 className="next"
                 disabled={pageNum >= toyPage.lastPageNum}
@@ -45,6 +45,7 @@ export function ToyPage() {
                     <option>10</option>
                 </select>
             </label>
+            <span className="total-results">Total results: <span>{toyPage.resultsNum}</span></span>
         </>
     )
 }
