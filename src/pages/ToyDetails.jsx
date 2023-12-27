@@ -1,24 +1,42 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { toyService } from "../services/toy.service"
 import { setErrorMessageText } from "../store/actions/app.actions"
+import { removeToy } from "../store/actions/toy.actions"
 
 
 export function ToyDetails() {
     const loggedInUser = useSelector(state => state.userModule.loggedInUser)
     const params = useParams()
-    const [toy, setToy] = useState(null)
+    const navigate = useNavigate()
+    const [toy, setToy] = useState(undefined)
 
     useEffect(() => {
         toyService.get(params.toyId)
             .then(setToy)
-            .catch(err => setErrorMessageText(err.response.data))
-    }, [])
+            .catch(err => {
+                setToy(null)
+                setErrorMessageText(err.response.data)
+            })
+    }, [params])
+
+    function onRemoveToy() {
+        removeToy(toy._id)
+            .then(navigate(`/toy`))
+    }
     
     return (
         <>
             <h2>Toy Details</h2>
+        {
+            toy === undefined &&
+            <h3>Loading...</h3>
+        }
+        {
+            toy === null &&
+            <h3>No such toy</h3>
+        }
         {
             toy &&
             <>
@@ -28,13 +46,13 @@ export function ToyDetails() {
                 {
                     loggedInUser && loggedInUser.isAdmin &&
                     <>
-                        <button className="edit">Edit</button>
-                        <button className="remove">Remove</button>
+                        <Link to={`/toy/${params.toyId}/edit`}>Edit</Link>
+                        <button className="remove" onClick={onRemoveToy}>Remove</button>
                     </>
                 }
             </>
         }
-        <Link to="/toy">Back</Link>
+            <Link to="/toy">Back</Link>
         </>
     )
 }

@@ -13,25 +13,19 @@ export function queryToys() {
         })
 }
 
-export function updateToy(updatedToy) {
-    return toyService.save(updatedToy)
-        .then(toy => {
-            store.dispatch({ type: UPDATE_TOY, toy })
-        })
-}
-
-export function removeToy(toy) {
-    return toyService.remove(toy)
-        .then(() => {
-            store.dispatch({ type: REMOVE_TOY, toy })
-        })
-}
-
 export function addToy(newToy) {
     return toyService.save(newToy)
-        .then(toy => {
-            store.dispatch({ type: ADD_TOY, toy })
-        })
+        .then(() => queryToys())
+}
+
+export function updateToy(updatedToy) {
+    return toyService.save(updatedToy)
+        .then(() => queryToys())
+}
+
+export function removeToy(toyId) {
+    return toyService.remove(toyId)
+        .then(() => queryToys())
 }
 
 export function setFilterBy(filterBy) {

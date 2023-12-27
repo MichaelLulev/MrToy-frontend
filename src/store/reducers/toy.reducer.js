@@ -26,16 +26,17 @@ export function toyReducer(state=initialState, action={}) {
             return { ...state, toyPage: action.toyPage}
 
         case ADD_TOY:
-            var toys = [action.toy, ...state.toyPage.toys]
-            return { ...state, toyPage: { ...toyPage, toys } }
+            // var toys = [action.toy, ...state.toyPage.toys]
+            // return { ...state, toyPage: { ...toyPage, toys } }
 
         case UPDATE_TOY:
-            var toys = state.toyPage.toys.map(toy => toy._id === action.toy._id ? action.toy : toy)
-            return { ...state, toyPage: { ...toyPage, toys } }
+            // var toys = state.toyPage.toys.map(toy => toy._id === action.toy._id ? action.toy : toy)
+            // return { ...state, toyPage: { ...toyPage, toys } }
 
         case REMOVE_TOY:
-            var toys = state.toyPage.toys.filter(toy => toy._id !== action.toy._id)
-            return { ...state, toyPage: { ...toyPage, toys } }
+            // var toys = state.toyPage.toys.filter(toy => toy._id !== action.toy._id)
+            // return { ...state, toyPage: { ...toyPage, toys } }
+            return { ...state }
 
         case SET_TOY_FILTER_BY:
             var filterBy = { ...state.filterBy, ...action.filterBy }

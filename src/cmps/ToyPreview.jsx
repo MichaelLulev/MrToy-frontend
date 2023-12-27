@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-
+import { removeToy } from "../store/actions/toy.actions"
 
 
 export function ToyPreview({ toy }) {
@@ -14,8 +14,8 @@ export function ToyPreview({ toy }) {
             {
                 loggedInUser && loggedInUser.isAdmin &&
                 <>
-                    <button className="edit">Edit</button>
-                    <button className="remove">Remove</button>
+                    <Link to={`/toy/${toy._id}/edit`}>Edit</Link>
+                    <button className="remove" onClick={() => removeToy(toy._id)}>Remove</button>
                 </>
             }
             <Link to={`/toy/${toy._id}`}>Details</Link>
