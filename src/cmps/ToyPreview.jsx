@@ -13,8 +13,8 @@ export function ToyPreview({ toy }) {
             <p className="toy-labels">{toy.labels.join(', ')}</p>
             <p className="toy-price">{toy.price}</p>
             <p className="toy-stock">Left in stock: <span>{toy.stock}</span></p>
-            <button className="add-to-cart">Add to cart</button>
             <Link to={`/toy/${toy._id}`}>Details</Link>
+            <button className="add-to-cart">Add to cart</button>
             {
                 loggedInUser && loggedInUser.isAdmin &&
                 <>

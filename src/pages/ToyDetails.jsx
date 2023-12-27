@@ -43,6 +43,7 @@ export function ToyDetails() {
                 <h3 className="toy-name">{toy.name}</h3>
                 <p className="toy-description">{toy.description}</p>
                 <p className="toy-price">{toy.price}</p>
+                <Link to={`/toy`}>Toys</Link>
                 {
                     loggedInUser && loggedInUser.isAdmin &&
                     <>

@@ -1,6 +1,6 @@
 import { store } from "../store.js"
 import { userService } from "../../services/user.service.js"
-import { SET_LOGGED_IN_USER, SET_USERS } from "../reducers/user.reducer.js"
+import { SET_LOGGED_IN_USER, SET_USERS, UPDATE_USER } from "../reducers/user.reducer.js"
 
 
 export function queryUsers() {
@@ -26,12 +26,12 @@ export function login(formUser) {
         })
 }
 
-// export function updateUser(user) {
-//     return userService.updateUser(user)
-//         .then(user => {
-//             store.dispatch({ type: SET_LOGGED_IN_USER, user })
-//         })
-// }
+export function updateUser(user) {
+    return userService.save(user)
+        .then(user => {
+            store.dispatch({ type: UPDATE_USER, user })
+        })
+}
 
 export function logout() {
     return userService.logout()
