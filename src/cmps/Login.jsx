@@ -4,10 +4,12 @@ import { useSelector } from "react-redux"
 import { userService } from "../services/user.service.js"
 import { signup, login, logout } from "../store/actions/user.actions.js"
 import { setErrorMessageText, setInfoMessageText } from "../store/actions/app.actions.js"
+import { Cart } from "./Cart.jsx"
 
 
 export function Login() {
     const loggedInUser = useSelector(state => state.userModule.loggedInUser)
+    const [isShowCart, setIsShowCart] = useState(false)
     const [isSignup, setIsSignup] = useState(false)
     const [formUser, setFormUser] = useState(userService.getNewUser())
 
@@ -46,6 +48,13 @@ export function Login() {
                     Logout
                 </button>
                 <h3>Logged in as <em>{loggedInUser.username}</em> aka <em>{loggedInUser.fullName}</em></h3>
+                <button className="cart-button" onClick={() => setIsShowCart(prev => ! prev)}>
+                    {isShowCart ? 'Hide cart' : 'Show cart'}
+                </button>
+                {
+                    isShowCart &&
+                    <Cart />
+                }
             </section>
         }
         {

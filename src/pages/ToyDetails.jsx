@@ -47,7 +47,7 @@ export function ToyDetails() {
                     loggedInUser && loggedInUser.isAdmin &&
                     <>
                         <Link to={`/toy/${params.toyId}/edit`}>Edit</Link>
-                        <button className="remove" onClick={onRemoveToy}>Remove</button>
+                        <button className="remove" onClick={onRemoveToy}>Delete</button>
                     </>
                 }
             </>

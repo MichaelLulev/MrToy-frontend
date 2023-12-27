@@ -26,6 +26,13 @@ export function login(formUser) {
         })
 }
 
+// export function updateUser(user) {
+//     return userService.updateUser(user)
+//         .then(user => {
+//             store.dispatch({ type: SET_LOGGED_IN_USER, user })
+//         })
+// }
+
 export function logout() {
     return userService.logout()
         .then(user => {
