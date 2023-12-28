@@ -83,6 +83,17 @@ export function ToyEdit() {
                             onChange={onChangeToy}
                         />
                     </label>
+                    <label>
+                        <span>Stock: </span>
+                        <input
+                            className="input-toy-stock"
+                            type="number"
+                            name="stock"
+                            value={toy.stock}
+                            min="0"
+                            onChange={onChangeToy}
+                        />
+                    </label>
                     <button className="submit">Submit</button>
                 </form>
                 <Link to={`/toy/${toy._id}`}>Details</Link>

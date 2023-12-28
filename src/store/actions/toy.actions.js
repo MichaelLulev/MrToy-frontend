@@ -23,6 +23,7 @@ export function queryToys() {
 export function addToy(newToy) {
     return toyService.save(newToy)
         .then(toy => {
+            store.dispatch({ type: ADD_TOY, toy })
             return queryToys().then(() => toy)
         })
 }
@@ -30,6 +31,15 @@ export function addToy(newToy) {
 export function updateToy(updatedToy) {
     return toyService.save(updatedToy)
         .then(toy => {
+            store.dispatch({ type: UPDATE_TOY, toy })
+            return queryToys().then(() => toy)
+        })
+}
+
+export function updateToyStock(toyId, stockDiff) {
+    return toyService.updateStock(toyId, stockDiff)
+        .then(toy => {
+            store.dispatch({ type: UPDATE_TOY, toy })
             return queryToys().then(() => toy)
         })
 }
@@ -37,6 +47,7 @@ export function updateToy(updatedToy) {
 export function removeToy(toyId) {
     return toyService.remove(toyId)
         .then(toy => {
+            store.dispatch({ type: REMOVE_TOY, toy })
             return queryToys().then(() => toy)
         })
 }

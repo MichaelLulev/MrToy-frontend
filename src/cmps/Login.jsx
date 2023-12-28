@@ -9,7 +9,7 @@ import { Cart } from "./Cart.jsx"
 
 export function Login() {
     const loggedInUser = useSelector(state => state.userModule.loggedInUser)
-    const [isShowCart, setIsShowCart] = useState(false)
+    const [isShowCart, setIsShowCart] = useState(true)
     const [isSignup, setIsSignup] = useState(false)
     const [formUser, setFormUser] = useState(userService.getNewUser())
 

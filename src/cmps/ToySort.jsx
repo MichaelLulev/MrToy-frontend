@@ -28,6 +28,7 @@ export function ToySort() {
                         <option value="name">Name</option>
                         <option value="description">Description</option>
                         <option value="price">Price</option>
+                        <option value="stock">Stock</option>
                     </select>
                 </label>
                 <label>

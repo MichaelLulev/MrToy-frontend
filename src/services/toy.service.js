@@ -8,6 +8,7 @@ export const toyService = {
     query,
     get,
     save,
+    updateStock,
     remove,
     getLabels,
     getDefaultToyPage,
@@ -28,6 +29,10 @@ function get(toyId) {
 function save(toy) {
     const saveFunc = toy._id ? httpService.put : httpService.post
     return saveFunc(URL_END_POINT_TOY, toy)
+}
+
+function updateStock(toyId, stockDiff) {
+    return httpService.put(URL_END_POINT_TOY, { _id: toyId, stockDiff })
 }
 
 function remove(toyId) {
