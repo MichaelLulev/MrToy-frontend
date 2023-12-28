@@ -19,6 +19,7 @@ export const toyService = {
 
 
 function query(filterBy={}, sortBy={}, pageInfo={}) {
+    filterBy = { ...filterBy, labels: JSON.stringify(filterBy.labels) }
     return httpService.get(URL_END_POINT_TOY, { ...filterBy, ...sortBy, ...pageInfo })
 }
 
@@ -55,7 +56,7 @@ function getDefaultFilterBy() {
     return {
         text: '',
         stock: 'any',
-        label: 'any',
+        labels: [],
     }
 }
 

@@ -1,4 +1,6 @@
 import { useSelector } from "react-redux"
+import { Box, OutlinedInput, InputLabel, MenuItem, FormControl, Select, Chip } from '@mui/material'
+
 import { setFilterBy } from "../store/actions/toy.actions"
 
 
@@ -8,8 +10,12 @@ export function ToyFilter() {
 
     function onChangeFilterBy(ev) {
         const name = ev.target.name
-        const value = ev.target.value
+        let value = ev.target.value
         setFilterBy({ [name]: value })
+    }
+
+    function onClearLabels() {
+        setFilterBy({ labels: [] })
     }
 
     return (
@@ -29,15 +35,26 @@ export function ToyFilter() {
                     </select>
                 </label>
                 <label>
-                    <span>Label: </span>
-                    <select name="label" className="filter-label" value={filterBy.label} onChange={onChangeFilterBy}>
-                        <option value="any">Any</option>
-                    {
-                        labels.map((label, i) => {
-                            return <option key={i}>{label}</option>
-                        })
-                    }
-                    </select>
+                    <span>Labels: </span>
+                    <FormControl sx={{ width: '16em' }}>
+                        <InputLabel >Labels</InputLabel>
+                        <Select
+                            name="labels"
+                            multiple
+                            value={filterBy.labels || []}
+                            onChange={onChangeFilterBy}
+                            input={<OutlinedInput label="Labels" />}
+                            renderValue={selectedLabels => 
+                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                    {selectedLabels.map((label, i) => <Chip key={i} label={label} />)}
+                                </Box>
+                            }
+                            MenuProps={{ style: { maxHeight: '20em',width: '16em' } }}
+                        >
+                            {labels.map((label, i) => <MenuItem key={i} value={label}>{label}</MenuItem>)}
+                        </Select>
+                    </FormControl>
+                    <button onClick={onClearLabels}>Clear</button>
                 </label>
             </section>
         </>
