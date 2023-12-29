@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom"
+import { Link } from "@mui/joy"
 
 import { Login } from "./Login.jsx"
 
@@ -8,9 +8,9 @@ export function Header() {
     return (
         <header>
             <Login />
-            <nav>
-                <NavLink to="/">Home</NavLink>
-                <NavLink to="/toy">Toys</NavLink>
+            <nav className="links">
+                <Link href="/" variant="outlined">Home</Link>
+                <Link href="/toy" variant="outlined">Toys</Link>
             </nav>
         </header>
     )

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
+import { Button, Link } from "@mui/joy"
+
 import { toyService } from "../services/toy.service"
 import { setErrorMessageText } from "../store/actions/app.actions"
 import { updateToy } from "../store/actions/toy.actions"
@@ -50,7 +52,7 @@ export function ToyEdit() {
         {
             toy &&
             <>
-                <form onSubmit={onSubmitToy}>
+                <form className="toy-edit-form" onSubmit={onSubmitToy}>
                     <label>
                         <span>Name: </span>
                         <input
@@ -94,9 +96,11 @@ export function ToyEdit() {
                             onChange={onChangeToy}
                         />
                     </label>
-                    <button className="submit">Submit</button>
+                    <section className="links">
+                        <Link href={`/toy/${toy._id}`} variant="outlined">Details</Link>
+                        <Button type="submit" size="sm" className="submit">Submit</Button>
+                    </section>
                 </form>
-                <Link to={`/toy/${toy._id}`}>Details</Link>
             </>
         }
         </>

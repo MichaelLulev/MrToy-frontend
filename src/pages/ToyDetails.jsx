@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
+import { Button, Link } from "@mui/joy"
 import { toyService } from "../services/toy.service"
 import { setErrorMessageText } from "../store/actions/app.actions"
 import { removeToy } from "../store/actions/toy.actions"
@@ -44,14 +45,16 @@ export function ToyDetails() {
                 <p className="toy-description">{toy.description}</p>
                 <p className="toy-price">{toy.price}</p>
                 <p className="toy-stock">Stock: {toy.stock}</p>
-                <Link to={`/toy`}>Toys</Link>
-                {
-                    loggedInUser && loggedInUser.isAdmin &&
-                    <>
-                        <Link to={`/toy/${params.toyId}/edit`}>Edit</Link>
-                        <button className="remove" onClick={onRemoveToy}>Delete</button>
-                    </>
-                }
+                <section className="links">
+                    <Link href={`/toy`} variant="outlined">Toys</Link>
+                    {
+                        loggedInUser && loggedInUser.isAdmin &&
+                        <>
+                            <Link href={`/toy/${params.toyId}/edit`} variant="outlined">Edit</Link>
+                            <Button size="sm" className="remove" onClick={onRemoveToy}>Delete</Button>
+                        </>
+                    }
+                </section>
             </>
         }
         </>

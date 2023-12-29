@@ -1,3 +1,13 @@
+.MuiLink-root.MuiLink-root {
+  margin-inline: 0;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
 .login-form {
   display: flex;
   align-items: center;
@@ -5,6 +15,15 @@
   flex-wrap: wrap;
 }
 .login-form > label {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.cart ul {
+  padding-inline-start: 1em;
+}
+.cart li {
   display: flex;
   align-items: center;
   gap: 0.5em;
@@ -45,6 +64,24 @@
   display: flex;
   align-items: center;
   gap: 0.5em;
+}
+
+.remove-toy-button {
+  border-radius: 10em;
+}
+
+.toy-edit-form {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 0.5em;
+  justify-content: start;
+}
+.toy-edit-form > label {
+  display: grid;
+  grid-template-columns: 7em auto;
+}
+.toy-edit-form > button {
+  justify-self: center;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -34,7 +34,23 @@ export function Cart() {
                 loggedInUser.cartItems.map((toy, i) =>
                     <li key={i}>
                         <span>{toy.name} {toy.price} </span>
-                        <Button className="remove-item" onClick={() => onRemoveItem(toy, i)}>X</Button>
+                        <Button
+                            sx={{
+                                display: 'flex',
+                                justifyItems: 'center',
+                                alignItems: 'center',
+                                width: '1.75em',
+                                height: '1.75em',
+                                minHeight: 0,
+                                margin: 0,
+                                padding: 0,
+                                borderRadius: '2em',
+                            }}
+                            className="remove-item"
+                            onClick={() => onRemoveItem(toy, i)}
+                        >
+                            X
+                        </Button>
                     </li>
                 )
             }

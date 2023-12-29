@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
 import { removeToy, updateToyStock } from "../store/actions/toy.actions"
 import { updateUser } from "../store/actions/user.actions"
+import { Button, Link } from "@mui/joy"
 
 
 export function ToyPreview({ toy }) {
@@ -23,18 +23,20 @@ export function ToyPreview({ toy }) {
             <p className="toy-labels">{toy.labels.join(', ')}</p>
             <p className="toy-price">{toy.price}</p>
             <p className="toy-stock">Stock: <span>{toy.stock}</span></p>
-            <Link to={`/toy/${toy._id}`}>Details</Link>
-        {
-            loggedInUser &&
-            <button className="add-to-cart" onClick={onAddToCart}>Add to cart</button>
-        }
-        {
-            loggedInUser && loggedInUser.isAdmin &&
-            <>
-                <Link to={`/toy/${toy._id}/edit`}>Edit</Link>
-                <button className="remove" onClick={() => removeToy(toy._id)}>Delete</button>
-            </>
-        }
+            <section className="links">
+                <Link href={`/toy/${toy._id}`} variant="outlined">Details</Link>
+            {
+                loggedInUser &&
+                <Button size="sm" className="add-to-cart" onClick={onAddToCart}>Add to cart</Button>
+            }
+            {
+                loggedInUser && loggedInUser.isAdmin &&
+                <>
+                    <Link href={`/toy/${toy._id}/edit`} variant="outlined">Edit</Link>
+                    <Button size="sm" className="remove" onClick={() => removeToy(toy._id)}>Delete</Button>
+                </>
+            }
+            </section>
         </article>
     )
 }
