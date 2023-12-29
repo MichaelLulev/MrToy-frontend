@@ -5,6 +5,7 @@ import { Button, Link } from "@mui/joy"
 import { toyService } from "../services/toy.service"
 import { setErrorMessageText } from "../store/actions/app.actions"
 import { removeToy } from "../store/actions/toy.actions"
+import { ToyPreview } from "../cmps/ToyPreview"
 
 
 export function ToyDetails() {
@@ -41,10 +42,7 @@ export function ToyDetails() {
         {
             toy &&
             <>
-                <h3 className="toy-name">{toy.name}</h3>
-                <p className="toy-description">{toy.description}</p>
-                <p className="toy-price">{toy.price}</p>
-                <p className="toy-stock">Stock: {toy.stock}</p>
+                <ToyPreview toy={toy}/>
                 <section className="links">
                     <Link href={`/toy`} variant="outlined">Toys</Link>
                     {

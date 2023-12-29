@@ -1,32 +1,50 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-import { Button, Link } from "@mui/joy"
+import { Box, Button, Chip, Input, Link, Option, Select, Textarea } from "@mui/joy"
 
 import { toyService } from "../services/toy.service"
 import { setErrorMessageText } from "../store/actions/app.actions"
-import { updateToy } from "../store/actions/toy.actions"
+import { setLabels, updateToy } from "../store/actions/toy.actions"
 
 
 export function ToyEdit() {
     const loggedInUser = useSelector(state => state.userModule.loggedInUser)
+    const labels = useSelector(state => state.toyModule.labels)
     const params = useParams()
     const navigate = useNavigate()
     const [toy, setToy] = useState(undefined)
 
     useEffect(() => {
+        onResetToy()
+        setLabels()
+            .catch(err => setErrorMessageText(err))
+    }, [params])
+
+    function onResetToy() {
         toyService.get(params.toyId)
             .then(setToy)
             .catch(err => {
                 setToy(null)
                 setErrorMessageText(err.response.data)
             })
-    }, [params])
+    }
+    
+    function onClearToy() {
+        setToy(prev => ({
+            ...prev,
+            name: '',
+            description: '',
+            price: 0,
+            stock: 0,
+            labels: []
+        }))
+    }
     
     function onChangeToy(ev) {
         const name = ev.target.name
         let value = ev.target.value
-        if (['price', 'stock'].includes(name)) value = +value
+        if (['price', 'stock'].includes(name)) value = Math.max(+value, 0)
         setToy(prev => ({ ...prev, [name]: value }))
     }
 
@@ -55,7 +73,7 @@ export function ToyEdit() {
                 <form className="toy-edit-form" onSubmit={onSubmitToy}>
                     <label>
                         <span>Name: </span>
-                        <input
+                        <Input
                             className="input-toy-name"
                             type="text"
                             name="name"
@@ -65,39 +83,75 @@ export function ToyEdit() {
                     </label>
                     <label>
                         <span>Description: </span>
-                        <textarea
+                        <Textarea
                             className="input-toy-description"
                             name="description"
                             value={toy.description}
                             rows="5"
                             onChange={onChangeToy}
-                        ></textarea>
+                        ></Textarea>
                     </label>
                     <label>
                         <span>Price: </span>
-                        <input
+                        <Input
                             className="input-toy-price"
                             type="number"
                             name="price"
                             value={toy.price}
-                            step="0.01"
-                            min="0"
                             onChange={onChangeToy}
                         />
                     </label>
                     <label>
                         <span>Stock: </span>
-                        <input
+                        <Input
                             className="input-toy-stock"
                             type="number"
                             name="stock"
                             value={toy.stock}
-                            min="0"
                             onChange={onChangeToy}
                         />
                     </label>
+                    <label>
+                        <span>Labels: </span>
+                        <Select
+                            className="input-toy-labels"
+                            multiple
+                            defaultValue={toy.labels}
+                            value={toy.labels}
+                            onChange={(syntEv, value) => onChangeToy({ target: { name: 'labels', value }})}
+                            renderValue={(selected) =>
+                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '0.25rem', width: '100%' }}>
+                                {
+                                    selected.map((selectedOption, i) =>
+                                        <Chip
+                                            key={i}
+                                            variant="soft"
+                                            color="primary"
+                                            onClick={syntEv => {
+                                                syntEv.stopPropagation()
+                                                const labels = toy.labels.filter(label => label !== selectedOption.value)
+                                                onChangeToy({ target: { name: 'labels', value: labels }})
+                                        }}
+                                        >
+                                            {selectedOption.label}
+                                        </Chip>
+                                )}
+                                </Box>
+                            }
+                            sx={{ width: '15rem' }}
+                            // slotProps={{ listbox: { sx: { width: '100%' } } }}
+                        >
+                        {
+                            labels.map((label, i) =>
+                                <Option key={i} value={label}>{label}</Option>
+                            )
+                        }
+                        </Select>
+                    </label>
                     <section className="links">
                         <Link href={`/toy/${toy._id}`} variant="outlined">Details</Link>
+                        <Button size="sm" className="clear" onClick={onClearToy}>Clear</Button>
+                        <Button size="sm" className="reset" onClick={onResetToy}>Reset</Button>
                         <Button type="submit" size="sm" className="submit">Submit</Button>
                     </section>
                 </form>

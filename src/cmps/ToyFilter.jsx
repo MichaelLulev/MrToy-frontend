@@ -23,12 +23,6 @@ export function ToyFilter() {
         setFilterBy({ [name]: value })
     }
 
-    function onClickChip(syntEv, clickedLabel) {
-        syntEv.stopPropagation()
-        const labels = filterBy.labels.filter(label => label !== clickedLabel.value)
-        setFilterBy({ labels })
-    }
-
     function onClearLabels() {
         setFilterBy({ labels: [] })
     }
@@ -42,7 +36,7 @@ export function ToyFilter() {
                     <Input
                         className="filter-search"
                         type="text"
-                        // value={_filterBy.text}
+                        value={_filterBy.text}
                         onChange={onChangeSearchText}
                     />
                 </label>
@@ -74,7 +68,11 @@ export function ToyFilter() {
                                         key={i}
                                         variant="soft"
                                         color="primary"
-                                        onClick={syntEv => onClickChip(syntEv, selectedOption)}
+                                        onClick={syntEv => {
+                                            syntEv.stopPropagation()
+                                            const labels = filterBy.labels.filter(label => label !== selectedOption.value)
+                                            setFilterBy({ labels })
+                                        }}
                                     >
                                         {selectedOption.label}
                                     </Chip>
