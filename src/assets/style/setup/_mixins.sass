@@ -1,7 +1,14 @@
 @mixin label-container
-    display: flex
-    align-items: center
+    @include flex-wrap
 
     > label
-        display: flex
-        align-items: center
+        @include flex
+
+@mixin flex-wrap
+    @include flex
+    flex-wrap: wrap
+
+@mixin flex
+    display: flex
+    align-items: center
+    gap: 0.5em

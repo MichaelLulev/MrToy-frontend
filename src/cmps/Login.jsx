@@ -5,7 +5,7 @@ import { userService } from "../services/user.service.js"
 import { signup, login, logout } from "../store/actions/user.actions.js"
 import { setErrorMessageText, setInfoMessageText } from "../store/actions/app.actions.js"
 import { Cart } from "./Cart.jsx"
-import { Input } from "@mui/joy"
+import { Button, Input } from "@mui/joy"
 
 
 export function Login() {
@@ -45,13 +45,13 @@ export function Login() {
         {
             loggedInUser &&
             <section className="logged-in-user">
-                <button className="logout" onClick={onLogout}>
+                <Button size="sm" className="logout" onClick={onLogout}>
                     Logout
-                </button>
+                </Button>
                 <h3>Logged in as <em>{loggedInUser.username}</em> aka <em>{loggedInUser.fullName}</em></h3>
-                <button className="cart-button" onClick={() => setIsShowCart(prev => ! prev)}>
+                <Button size="sm" className="cart-button" onClick={() => setIsShowCart(prev => ! prev)}>
                     {isShowCart ? 'Hide cart' : 'Show cart'}
-                </button>
+                </Button>
                 {
                     isShowCart &&
                     <Cart />
@@ -63,15 +63,15 @@ export function Login() {
             <section className="login">
             {
                 isSignup &&
-                <button className="login-button" onClick={() => setIsSignup(prev => ! prev)}>
+                <Button size="sm" className="login-button" onClick={() => setIsSignup(prev => ! prev)}>
                     Login
-                </button>
+                </Button>
             }
             {
                 ! isSignup &&
-                <button className="signup-button" onClick={() => setIsSignup(prev => ! prev)}>
+                <Button size="sm" className="signup-button" onClick={() => setIsSignup(prev => ! prev)}>
                     Sign up
-                </button>
+                </Button>
             }
                 <h3>{isSignup ? 'Sign up' : 'login'}</h3>
                 <form className="login-form" onSubmit={onSubmitForm}>
@@ -83,6 +83,7 @@ export function Login() {
                             name="fullName"
                             value={formUser.fullName}
                             onChange={onChangeFormUser}
+                            required
                         />
                     </label>
                 }
@@ -92,6 +93,7 @@ export function Login() {
                             name="username"
                             value={formUser.username}
                             onChange={onChangeFormUser}
+                            required
                         />
                     </label>
                     <label>
@@ -100,9 +102,10 @@ export function Login() {
                             name="password"
                             value={formUser.password}
                             onChange={onChangeFormUser}
+                            required
                         />
                     </label>
-                    <button className="submit-button">Submit</button>
+                    <Button type="submit" size="sm" className="submit-button">Submit</Button>
                 </form>
             </section>
         }

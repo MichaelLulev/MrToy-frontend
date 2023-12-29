@@ -1,6 +1,6 @@
 import { useState, useRef } from "react"
 import { useSelector } from "react-redux"
-import { Input, Select, Box, Chip, Option } from '@mui/joy'
+import { Input, Select, Box, Chip, Option, Button } from '@mui/joy'
 
 import { debounce } from "../services/util.service"
 import { setFilterBy } from "../store/actions/toy.actions"
@@ -91,7 +91,7 @@ export function ToyFilter() {
                     }
                     </Select>
                 </label>
-                <button onClick={onClearLabels}>Clear</button>
+                <Button size="sm" onClick={onClearLabels}>Clear</Button>
             </section>
         </>
     )

@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { updateUser } from "../store/actions/user.actions";
 import { updateToyStock } from "../store/actions/toy.actions";
+import { Button } from "@mui/joy";
 
 
 
@@ -33,13 +34,13 @@ export function Cart() {
                 loggedInUser.cartItems.map((toy, i) =>
                     <li key={i}>
                         <span>{toy.name} {toy.price} </span>
-                        <button className="remove-item" onClick={() => onRemoveItem(toy, i)}>X</button>
+                        <Button className="remove-item" onClick={() => onRemoveItem(toy, i)}>X</Button>
                     </li>
                 )
             }
             </ul>
             <p className="cart-total">Total: <span>{loggedInUser.cartTotal}</span></p>
-            <button className="buy" onClick={onBuy}>Buy</button>
+            <Button size="sm" className="buy" onClick={onBuy}>Buy</Button>
         </section>
     )
 }
