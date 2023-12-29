@@ -1,3 +1,5 @@
+import './assets/style/main.css'
+
 import { Routes, Route } from 'react-router-dom'
 
 import { Header } from "./cmps/Header.jsx"
