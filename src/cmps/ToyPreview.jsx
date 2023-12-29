@@ -1,19 +1,7 @@
-import { useSelector } from "react-redux"
 
-import { updateUser } from "../store/actions/user.actions"
 
 
 export function ToyPreview({ toy }) {
-    const loggedInUser = useSelector(state => state.userModule.loggedInUser)
-
-    function onAddToCart() {
-        if (! toy.stock) return
-        const cartItems = [toy, ...loggedInUser.cartItems]
-        const cartTotal = Math.round(100 * (loggedInUser.cartTotal + toy.price)) / 100
-        const user = { ...loggedInUser, cartItems, cartTotal }
-        updateUser(user)
-        updateToyStock(toy._id, -1)
-    }
     
     return (
         <article className="toy-preview">
