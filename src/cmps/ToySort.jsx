@@ -1,43 +1,43 @@
 import { useSelector } from "react-redux"
 
 import { setSortBy } from "../store/actions/toy.actions"
+import { Checkbox, Select, Option } from "@mui/joy"
 
 
 export function ToySort() {
     const sortBy = useSelector(state => state.toyModule.sortBy)
 
-    function onChangeSortBy(ev) {
-        const name = ev.target.name
-        let value = ev.target.value
-        if (name === 'isAscending') value = ev.target.checked
-        setSortBy({ [name]: value })
+    function onChangeSortField(syntEv, value) {
+        setSortBy({ field: value })
+    }
+
+    function onChangeIsAscending(ev) {
+        const checked = ev.target.checked
+        setSortBy({ isAscending: checked })
     }
 
     return (
         <>
             <h2>Sort</h2>
-            <section className="sort">
+            <section className="toy-sort">
                 <label>
                     <span>Field: </span>
-                    <select
-                        name="field"
+                    <Select
                         className="sort-field"
                         value={sortBy.field}
-                        onChange={onChangeSortBy}
+                        onChange={onChangeSortField}
                     >
-                        <option value="name">Name</option>
-                        <option value="description">Description</option>
-                        <option value="price">Price</option>
-                        <option value="stock">Stock</option>
-                    </select>
+                        <Option value="name">Name</Option>
+                        <Option value="description">Description</Option>
+                        <Option value="price">Price</Option>
+                        <Option value="stock">Stock</Option>
+                    </Select>
                 </label>
                 <label>
                     <span>Ascending: </span>
-                    <input
-                        type="checkbox"
-                        name="isAscending"
+                    <Checkbox
                         checked={sortBy.isAscending}
-                        onChange={onChangeSortBy}
+                        onChange={onChangeIsAscending}
                     />
                 </label>
             </section>

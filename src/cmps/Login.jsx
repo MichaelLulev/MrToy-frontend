@@ -5,6 +5,7 @@ import { userService } from "../services/user.service.js"
 import { signup, login, logout } from "../store/actions/user.actions.js"
 import { setErrorMessageText, setInfoMessageText } from "../store/actions/app.actions.js"
 import { Cart } from "./Cart.jsx"
+import { Input } from "@mui/joy"
 
 
 export function Login() {
@@ -78,8 +79,7 @@ export function Login() {
                     isSignup &&
                     <label>
                         <span>Full name: </span>
-                        <input
-                            type="text"
+                        <Input
                             name="fullName"
                             value={formUser.fullName}
                             onChange={onChangeFormUser}
@@ -88,8 +88,7 @@ export function Login() {
                 }
                     <label>
                         <span>Username: </span>
-                        <input
-                            type="text"
+                        <Input
                             name="username"
                             value={formUser.username}
                             onChange={onChangeFormUser}
@@ -97,8 +96,7 @@ export function Login() {
                     </label>
                     <label>
                         <span>Password: </span>
-                        <input
-                            type="password"
+                        <Input
                             name="password"
                             value={formUser.password}
                             onChange={onChangeFormUser}

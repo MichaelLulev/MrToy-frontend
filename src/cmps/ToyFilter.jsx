@@ -36,7 +36,7 @@ export function ToyFilter() {
     return (
         <>
             <h2>Filter</h2>
-            <section className="filter">
+            <section className="toy-filter">
                 <label>
                     <span>Search: </span>
                     <Input
