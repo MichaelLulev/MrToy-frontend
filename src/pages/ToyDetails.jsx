@@ -23,9 +23,9 @@ export function ToyDetails() {
             })
     }, [params])
 
-    function onRemoveToy() {
-        removeToy(toy._id)
-            .then(navigate(`/toy`))
+    async function onRemoveToy() {
+        await removeToy(toy._id)
+        navigate(`/toy`)
     }
     
     return (

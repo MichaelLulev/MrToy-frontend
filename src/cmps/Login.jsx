@@ -20,24 +20,32 @@ export function Login() {
         setFormUser(prev => ({ ...prev, [name]: value }))
     }
 
-    function onSubmitForm(ev) {
+    async function onSubmitForm(ev) {
         ev.preventDefault()
         if (isSignup) {
-            signup(formUser)
-                .then(user => setInfoMessageText(`Signed up as '${user.username}'`))
-                .catch(err => setErrorMessageText(err.response.data))
-        }
-        else {
-            login(formUser)
-                .then(user => setInfoMessageText(`Logged in as '${user.username}'`))
-                .catch(err => setErrorMessageText(err.response.data))
+            try {
+                const user = await signup(formUser)
+                setInfoMessageText(`Signed up as '${user.username}'`)
+            } catch (err) {
+                setErrorMessageText(err.response.data)
+            }
+        } else {
+            try {
+                const user = await login(formUser)
+                setInfoMessageText(`Logged in as '${user.username}'`)
+            } catch (err) {
+                setErrorMessageText(err.response.data)
+            }
         }
     }
 
-    function onLogout() {
-        logout()
-            .then(user => setInfoMessageText(`Logged out as '${user.username}'`))
-            .catch(err => setErrorMessageText(err.response.data))
+    async function onLogout() {
+        try {
+            const user = await logout()
+            setInfoMessageText(`Logged out as '${user.username}'`)
+        } catch (err) {
+            setErrorMessageText(err.response.data)
+        }
     }
     
     return (

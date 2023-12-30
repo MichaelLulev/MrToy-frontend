@@ -21,13 +21,14 @@ export function ToyEdit() {
             .catch(err => setErrorMessageText(err))
     }, [params])
 
-    function onResetToy() {
-        toyService.get(params.toyId)
-            .then(setToy)
-            .catch(err => {
+    async function onResetToy() {
+        try {
+            const toy = await toyService.get(params.toyId)
+            setToy(toy)
+        } catch (err) {
                 setToy(null)
                 setErrorMessageText(err.response.data)
-            })
+        }
     }
     
     function onClearToy() {
@@ -48,10 +49,10 @@ export function ToyEdit() {
         setToy(prev => ({ ...prev, [name]: value }))
     }
 
-    function onSubmitToy(ev) {
+    async function onSubmitToy(ev) {
         ev.preventDefault()
-        updateToy(toy)
-            .then(toy => navigate(`/toy/${toy._id}`))
+        const _toy = await updateToy(toy)
+        navigate(`/toy/${_toy._id}`)
     }
 
     if (! loggedInUser) return <h3>Not logged in</h3>

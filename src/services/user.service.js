@@ -26,20 +26,16 @@ function get(userId) {
     return httpService.get(URL_END_POINT_USER + userId)
 }
 
-function signup(user) {
-    return httpService.post(URL_END_POINT_AUTH + '/signup', user)
-        .then(user => {
-            if (user) return _setLoggedInUser(user)
-            else return Promise.reject('Invalid signup')
-        })
+async function signup(user) {
+    const _user = await httpService.post(URL_END_POINT_AUTH + '/signup', user)
+    if (_user) return _setLoggedInUser(_user)
+    return Promise.reject('Invalid signup')
 }
 
-function login(user) {
-    return httpService.post(URL_END_POINT_AUTH + '/login', user)
-        .then(user => {
-            if (user) return _setLoggedInUser(user)
-            else return Promise.reject('Invalid login')
-        })
+async function login(user) {
+    const _user = await httpService.post(URL_END_POINT_AUTH + '/login', user)
+    if (_user) return _setLoggedInUser(_user)
+    else return Promise.reject('Invalid login')
 }
 
 function getLoggedInUser() {
@@ -47,12 +43,10 @@ function getLoggedInUser() {
     return JSON.parse(strLoggedInUser)
 }
 
-function updateUser(user) {
-    return httpService.put(URL_END_POINT_USER + '/update', user)
-        .then(user => {
-            if (getLoggedInUser()._id === user._id) _setLoggedInUser(user)
-            return user
-        })
+async function updateUser(user) {
+    const _user = await httpService.put(URL_END_POINT_USER + '/update', user)
+    if (getLoggedInUser()._id === _user._id) _setLoggedInUser(_user)
+    return _user
 }
 
 function _setLoggedInUser(user) {
@@ -61,12 +55,10 @@ function _setLoggedInUser(user) {
     return user
 }
 
-function logout() {
-    return httpService.post(URL_END_POINT_AUTH + '/logout')
-        .then(user => {
-            sessionStorage.removeItem(STORAGE_KEY_LOGGED_IN)
-            return user
-        })
+async function logout() {
+    const _user = await httpService.post(URL_END_POINT_AUTH + '/logout')
+    sessionStorage.removeItem(STORAGE_KEY_LOGGED_IN)
+    return _user
 }
 
 function getNewUser() {

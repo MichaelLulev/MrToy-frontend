@@ -3,53 +3,45 @@ import { ADD_TOY, REMOVE_TOY, SET_TOY_FILTER_BY, SET_TOY_PAGE_INFO, SET_TOY_SORT
 import { store } from "../store.js"
 
 
-export function setLabels() {
-    return toyService.getLabels()
-        .then(labels => {
-            store.dispatch({ type: SET_LABELS, labels })
-        })
+export async function setLabels() {
+    const labels = await toyService.getLabels()
+    store.dispatch({ type: SET_LABELS, labels })
 }
 
-export function queryToys() {
+export async function queryToys() {
     const filterBy = store.getState().toyModule.filterBy
     const sortBy = store.getState().toyModule.sortBy
     const pageInfo = store.getState().toyModule.pageInfo
-    return toyService.query(filterBy, sortBy, pageInfo)
-        .then(toyPage => {
-            store.dispatch({ type: SET_TOY_PAGE, toyPage })
-        })
+    const toyPage = await toyService.query(filterBy, sortBy, pageInfo)
+    store.dispatch({ type: SET_TOY_PAGE, toyPage })
 }
 
-export function addToy(newToy) {
-    return toyService.save(newToy)
-        .then(toy => {
-            store.dispatch({ type: ADD_TOY, toy })
-            return queryToys().then(() => toy)
-        })
+export async function addToy(newToy) {
+    const toy = await toyService.save(newToy)
+    store.dispatch({ type: ADD_TOY, toy })
+    await queryToys()
+    return toy
 }
 
-export function updateToy(updatedToy) {
-    return toyService.save(updatedToy)
-        .then(toy => {
-            store.dispatch({ type: UPDATE_TOY, toy })
-            return queryToys().then(() => toy)
-        })
+export async function updateToy(updatedToy) {
+    const toy = await toyService.save(updatedToy)
+    store.dispatch({ type: UPDATE_TOY, toy })
+    await queryToys()
+    return toy
 }
 
-export function updateToyStock(toyId, stockDiff) {
-    return toyService.updateStock(toyId, stockDiff)
-        .then(toy => {
-            store.dispatch({ type: UPDATE_TOY, toy })
-            return queryToys().then(() => toy)
-        })
+export async function updateToyStock(toyId, stockDiff) {
+    const toy = await toyService.updateStock(toyId, stockDiff)
+    store.dispatch({ type: UPDATE_TOY, toy })
+    await queryToys()
+    return toy
 }
 
-export function removeToy(toyId) {
-    return toyService.remove(toyId)
-        .then(toy => {
-            store.dispatch({ type: REMOVE_TOY, toy })
-            return queryToys().then(() => toy)
-        })
+export async function removeToy(toyId) {
+    const toy = await toyService.remove(toyId)
+    store.dispatch({ type: REMOVE_TOY, toy })
+    await queryToys()
+    return toy
 }
 
 export function setFilterBy(filterBy) {
