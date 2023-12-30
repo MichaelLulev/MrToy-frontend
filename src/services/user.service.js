@@ -23,7 +23,7 @@ function query() {
 }
 
 function get(userId) {
-    return httpService.get(URL_END_POINT_USER + userId)
+    return httpService.get(URL_END_POINT_USER + `/${userId}`)
 }
 
 async function signup(user) {

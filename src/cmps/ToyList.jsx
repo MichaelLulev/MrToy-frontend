@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux"
 import { ToyPreview } from "./ToyPreview"
 import { Button, Link } from "@mui/joy"
+import { updateUser } from '../store/actions/user.actions'
+import { updateToyStock } from '../store/actions/toy.actions'
 
 
 export function ToyList() {
@@ -19,10 +21,12 @@ export function ToyList() {
     return (
         <section className="toy-list">
         {
-            toys.map(toy =>
-                <articlt className="toy-preview-container">
+            toys.map((toy, i) =>
+                <article
+                    key={toy._id}
+                    className="toy-preview-container"
+                >
                     <ToyPreview
-                        key={toy._id}
                         toy={toy}
                     />
                     <section className="links">
@@ -39,7 +43,7 @@ export function ToyList() {
                         </>
                     }
                     </section>
-                </articlt>
+                </article>
                 )
         }
         </section>
