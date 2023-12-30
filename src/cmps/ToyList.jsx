@@ -31,15 +31,12 @@ export function ToyList() {
                     />
                     <section className="links">
                         <Link href={`/toy/${toy._id}`} variant="outlined">Details</Link>
-                    {
-                        loggedInUser &&
-                        <Button size="sm" className="add-to-cart" onClick={() => onAddToCart(toy)}>Add to cart</Button>
-                    }
+                        <Button size="md" className="add-to-cart" disabled={! loggedInUser || ! toy.stock} onClick={() => onAddToCart(toy)}>Add to cart</Button>
                     {
                         loggedInUser && loggedInUser.isAdmin &&
                         <>
                             <Link href={`/toy/${toy._id}/edit`} variant="outlined">Edit</Link>
-                            <Button size="sm" className="remove" onClick={() => removeToy(toy._id)}>Delete</Button>
+                            <Button size="md" className="remove" onClick={() => removeToy(toy._id)}>Delete</Button>
                         </>
                     }
                     </section>

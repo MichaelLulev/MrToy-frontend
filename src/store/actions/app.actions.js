@@ -1,6 +1,10 @@
-import { SET_MESSAGE } from "../reducers/app.reducer.js"
+import { SET_MESSAGE, SET_TITLE } from "../reducers/app.reducer.js"
 import { store } from "../store.js"
 
+
+export function setTitle(text) {
+    store.dispatch({ type: SET_TITLE, title: text })
+}
 
 export function setInfoMessageText(text) {
     store.dispatch({ type: SET_MESSAGE, message: { type: 'info', text }})

@@ -63,13 +63,13 @@ function getDefaultFilterBy() {
 function getDefaultSortBy() {
     return {
         field: 'name',
-        isAscending: false,
+        isAscending: true,
     }
 }
 
 function getDefaultPageInfo() {
     return {
         pageNum: 1,
-        toysPerPage: 4,
+        toysPerPage: 6,
     }
 }

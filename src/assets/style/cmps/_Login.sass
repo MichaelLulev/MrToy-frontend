@@ -1,2 +1,16 @@
-.login-form
-    @include label-container
+.login
+    position: relative
+    .login-form
+        position: absolute
+        width: 20em
+        display: grid
+        justify-items: center
+        gap: $grid-gap
+        background-color: white
+        label
+            display: grid
+            grid-template-columns: 7em auto
+            align-items: center
+
+.logged-in-user
+    @include flex

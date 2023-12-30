@@ -1,0 +1,19 @@
+.toy-list
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax($toy-preview-width, 1fr))
+    gap: 1em
+    padding: $vertical-padding $side-padding
+    .toy-preview-container
+        border: 1px solid gray
+        border-radius: 1em
+        padding: 1em
+        display: flex
+        flex-direction: column
+        gap: 1em
+        .toy-preview
+            >*
+                margin: 0
+            >*:not(:last-child)
+                margin-block-end: 1em
+        .links
+            justify-content: center

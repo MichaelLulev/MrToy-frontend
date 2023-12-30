@@ -10,9 +10,15 @@ import { Button, Input } from "@mui/joy"
 
 export function Login() {
     const loggedInUser = useSelector(state => state.userModule.loggedInUser)
-    const [isShowCart, setIsShowCart] = useState(true)
-    const [isSignup, setIsSignup] = useState(false)
+    const [isShowCart, setIsShowCart] = useState(false)
+    const [isShowLogin, setIsShowLogin] = useState(false)
+    const [isSignup, setIsSignup] = useState(true)
     const [formUser, setFormUser] = useState(userService.getNewUser())
+
+    function onClickSignup(ev) {
+        if (! isShowLogin) setIsShowLogin(true)
+        setIsSignup(prev => ! prev)
+    }
 
     function onChangeFormUser(ev) {
         const name = ev.target.name
@@ -53,11 +59,11 @@ export function Login() {
         {
             loggedInUser &&
             <section className="logged-in-user">
-                <Button size="sm" className="logout" onClick={onLogout}>
+                <Button size="md" className="logout" onClick={onLogout}>
                     Logout
                 </Button>
                 <h3>Logged in as <em>{loggedInUser.username}</em> aka <em>{loggedInUser.fullName}</em></h3>
-                <Button size="sm" className="cart-button" onClick={() => setIsShowCart(prev => ! prev)}>
+                <Button size="md" className="cart-button" onClick={() => setIsShowCart(prev => ! prev)}>
                     {isShowCart ? 'Hide cart' : 'Show cart'}
                 </Button>
                 {
@@ -71,18 +77,20 @@ export function Login() {
             <section className="login">
             {
                 isSignup &&
-                <Button size="sm" className="login-button" onClick={() => setIsSignup(prev => ! prev)}>
+                <Button size="md" className="login-button" onClick={onClickSignup}>
                     Login
                 </Button>
             }
             {
                 ! isSignup &&
-                <Button size="sm" className="signup-button" onClick={() => setIsSignup(prev => ! prev)}>
+                <Button size="md" className="signup-button" onClick={onClickSignup}>
                     Sign up
                 </Button>
             }
-                <h3>{isSignup ? 'Sign up' : 'login'}</h3>
+            {
+                isShowLogin &&
                 <form className="login-form" onSubmit={onSubmitForm}>
+                    <h3>{isSignup ? 'Sign up' : 'login'}</h3>
                 {
                     isSignup &&
                     <label>
@@ -113,8 +121,12 @@ export function Login() {
                             required
                         />
                     </label>
-                    <Button type="submit" size="sm" className="submit-button">Submit</Button>
+                    <section className="links">
+                        <Button size="md" className="close-button" onClick={() => setIsShowLogin(false)}>Close</Button>
+                        <Button size="md" className="submit-button" type="submit">Submit</Button>
+                    </section>
                 </form>
+            }
             </section>
         }
         </>

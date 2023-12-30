@@ -28,69 +28,67 @@ export function ToyFilter() {
     }
 
     return (
-        <>
+        <section className="toy-filter">
             <h2>Filter</h2>
-            <section className="toy-filter">
-                <label>
-                    <span>Search: </span>
-                    <Input
-                        className="filter-search"
-                        type="text"
-                        value={_filterBy.text}
-                        onChange={onChangeSearchText}
-                    />
-                </label>
-                <label>
-                    <span>Stock: </span>
-                    <Select
-                        className="filter-stock"
-                        value={filterBy.stock}
-                        onChange={(syntEv, value) => onChangeFilterBy('stock', value)}
-                    >
-                        <Option value="any">Any</Option>
-                        <Option value="yes">In stock</Option>
-                        <Option value="no">Out of stock</Option>
-                    </Select>
-                </label>
-                <label>
-                    <span>Labels: </span>
-                    <Select
-                        className="filter-labels"
-                        multiple
-                        defaultValue={filterBy.labels}
-                        value={filterBy.labels}
-                        onChange={(syntEv, value) => onChangeFilterBy('labels', value)}
-                        renderValue={(selected) =>
-                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '0.25rem', width: '100%' }}>
-                            {
-                                selected.map((selectedOption, i) =>
-                                    <Chip
-                                        key={i}
-                                        variant="soft"
-                                        color="primary"
-                                        onClick={syntEv => {
-                                            syntEv.stopPropagation()
-                                            const labels = filterBy.labels.filter(label => label !== selectedOption.value)
-                                            setFilterBy({ labels })
-                                        }}
-                                    >
-                                        {selectedOption.label}
-                                    </Chip>
-                            )}
-                            </Box>
-                        }
-                        sx={{ width: '15rem' }}
-                        // slotProps={{ listbox: { sx: { width: '100%' } } }}
-                    >
-                    {
-                        labels.map((label, i) =>
-                            <Option key={i} value={label}>{label}</Option>
-                        )
+            <label>
+                <span>Search: </span>
+                <Input
+                    className="filter-search"
+                    type="text"
+                    value={_filterBy.text}
+                    onChange={onChangeSearchText}
+                />
+            </label>
+            <label>
+                <span>Stock: </span>
+                <Select
+                    className="filter-stock"
+                    value={filterBy.stock}
+                    onChange={(syntEv, value) => onChangeFilterBy('stock', value)}
+                >
+                    <Option value="any">Any</Option>
+                    <Option value="yes">In stock</Option>
+                    <Option value="no">Out of stock</Option>
+                </Select>
+            </label>
+            <label>
+                <span>Labels: </span>
+                <Select
+                    className="filter-labels"
+                    multiple
+                    defaultValue={filterBy.labels}
+                    value={filterBy.labels}
+                    onChange={(syntEv, value) => onChangeFilterBy('labels', value)}
+                    renderValue={(selected) =>
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '0.25rem', width: '100%' }}>
+                        {
+                            selected.map((selectedOption, i) =>
+                                <Chip
+                                    key={i}
+                                    variant="soft"
+                                    color="primary"
+                                    onClick={syntEv => {
+                                        syntEv.stopPropagation()
+                                        const labels = filterBy.labels.filter(label => label !== selectedOption.value)
+                                        setFilterBy({ labels })
+                                    }}
+                                >
+                                    {selectedOption.label}
+                                </Chip>
+                        )}
+                        </Box>
                     }
-                    </Select>
-                </label>
-                <Button size="sm" onClick={onClearLabels}>Clear</Button>
-            </section>
-        </>
+                    sx={{ width: '15rem' }}
+                    // slotProps={{ listbox: { sx: { width: '100%' } } }}
+                >
+                {
+                    labels.map((label, i) =>
+                        <Option key={i} value={label}>{label}</Option>
+                    )
+                }
+                </Select>
+                <Button size="md" onClick={onClearLabels}>Clear</Button>
+            </label>
+        </section>
     )
 }

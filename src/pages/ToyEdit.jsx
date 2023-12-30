@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { Box, Button, Chip, Input, Link, Option, Select, Textarea } from "@mui/joy"
 
 import { toyService } from "../services/toy.service"
-import { setErrorMessageText } from "../store/actions/app.actions"
+import { setErrorMessageText, setTitle } from "../store/actions/app.actions"
 import { setLabels, updateToy } from "../store/actions/toy.actions"
 
 
@@ -14,6 +14,8 @@ export function ToyEdit() {
     const params = useParams()
     const navigate = useNavigate()
     const [toy, setToy] = useState(undefined)
+
+    useEffect(() => setTitle('Toy Edit'))
 
     useEffect(() => {
         onResetToy()
@@ -59,7 +61,6 @@ export function ToyEdit() {
     if (! loggedInUser.isAdmin) return <h3>Not admin</h3>
     return (
         <>
-            <h2>Toy Edit</h2>
         {
             toy === undefined &&
             <h3>Loading...</h3>
@@ -149,11 +150,15 @@ export function ToyEdit() {
                         }
                         </Select>
                     </label>
+                    <label>
+                        <span>New label: </span>
+                        <Input />
+                    </label>
                     <section className="links">
                         <Link href={`/toy/${toy._id}`} variant="outlined">Details</Link>
-                        <Button size="sm" className="clear" onClick={onClearToy}>Clear</Button>
-                        <Button size="sm" className="reset" onClick={onResetToy}>Reset</Button>
-                        <Button type="submit" size="sm" className="submit">Submit</Button>
+                        <Button size="md" className="clear" onClick={onClearToy}>Clear</Button>
+                        <Button size="md" className="reset" onClick={onResetToy}>Reset</Button>
+                        <Button size="md" className="submit" type="submit">Submit</Button>
                     </section>
                 </form>
             </>

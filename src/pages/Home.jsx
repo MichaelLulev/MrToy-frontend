@@ -1,10 +1,13 @@
+import { useEffect } from 'react'
+import { setTitle } from '../store/actions/app.actions'
 
 
 export function Home() {
+    
+    useEffect(() => setTitle('Toy Home'))
 
     return (
-        <>
-            <h2>Toy Home</h2>
-        </>
+        <section className="home-page">
+        </section>
     )
 }

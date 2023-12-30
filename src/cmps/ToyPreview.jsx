@@ -6,6 +6,7 @@ export function ToyPreview({ toy }) {
     return (
         <article className="toy-preview">
             <h3 className="toy-name">{toy.name}</h3>
+            <img src={`/img/toy/${toy.name}.jpg`} />
             <p className="toy-description">{toy.description}</p>
             <p className="toy-labels">{toy.labels.join(', ')}</p>
             <p className="toy-price">{toy.price}</p>

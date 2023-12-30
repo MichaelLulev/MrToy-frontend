@@ -6,10 +6,12 @@ import { useSelector } from 'react-redux'
 
 export function Header() {
     const loggedInUser = useSelector(state => state.userModule.loggedInUser)
+    const title = useSelector(state => state.appModule.title)
 
     return (
-        <header>
+        <header className="main-header">
             <Login />
+            <h2 className="title">{title}</h2>
             <nav className="links">
                 <Link href="/" variant="outlined">Home</Link>
                 <Link href="/toy" variant="outlined">Toys</Link>
@@ -19,7 +21,7 @@ export function Header() {
             }
             {
                 loggedInUser?.isAdmin &&
-                <Link href={`/admin`} variant="outlined">Admin</Link>
+                <Link href={`/admin`} variant="outlined">Admin page</Link>
             }
             </nav>
         </header>

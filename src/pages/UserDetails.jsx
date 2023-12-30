@@ -51,7 +51,7 @@ export function UserDetails() {
                         loggedInUser && loggedInUser.isAdmin &&
                         <>
                             <Link href={`/toy/${params.toyId}/edit`} variant="outlined">Edit</Link>
-                            <Button size="sm" className="remove" onClick={onRemoveToy}>Delete</Button>
+                            <Button size="md" className="remove" onClick={onRemoveToy}>Delete</Button>
                         </>
                     }
                 </section> */}

@@ -17,30 +17,28 @@ export function ToySort() {
     }
 
     return (
-        <>
+        <section className="toy-sort">
             <h2>Sort</h2>
-            <section className="toy-sort">
-                <label>
-                    <span>Field: </span>
-                    <Select
-                        className="sort-field"
-                        value={sortBy.field}
-                        onChange={onChangeSortField}
-                    >
-                        <Option value="name">Name</Option>
-                        <Option value="description">Description</Option>
-                        <Option value="price">Price</Option>
-                        <Option value="stock">Stock</Option>
-                    </Select>
-                </label>
-                <label>
-                    <span>Ascending: </span>
-                    <Checkbox
-                        checked={sortBy.isAscending}
-                        onChange={onChangeIsAscending}
-                    />
-                </label>
-            </section>
-        </>
+            <label>
+                <span>Field: </span>
+                <Select
+                    className="sort-field"
+                    value={sortBy.field}
+                    onChange={onChangeSortField}
+                >
+                    <Option value="name">Name</Option>
+                    <Option value="description">Description</Option>
+                    <Option value="price">Price</Option>
+                    <Option value="stock">Stock</Option>
+                </Select>
+            </label>
+            <label>
+                <span>Ascending: </span>
+                <Checkbox
+                    checked={sortBy.isAscending}
+                    onChange={onChangeIsAscending}
+                />
+            </label>
+        </section>
     )
 }

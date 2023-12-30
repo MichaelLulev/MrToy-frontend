@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Link } from "@mui/joy"
 import { toyService } from "../services/toy.service"
-import { setErrorMessageText } from "../store/actions/app.actions"
+import { setErrorMessageText, setTitle } from "../store/actions/app.actions"
 import { removeToy } from "../store/actions/toy.actions"
 import { ToyPreview } from "../cmps/ToyPreview"
 
@@ -13,6 +13,8 @@ export function ToyDetails() {
     const params = useParams()
     const navigate = useNavigate()
     const [toy, setToy] = useState(undefined)
+
+    useEffect(() => setTitle('Toy Details'))
 
     useEffect(() => {
         toyService.get(params.toyId)
@@ -30,7 +32,6 @@ export function ToyDetails() {
     
     return (
         <>
-            <h2>Toy Details</h2>
         {
             toy === undefined &&
             <h3>Loading...</h3>
@@ -41,7 +42,7 @@ export function ToyDetails() {
         }
         {
             toy &&
-            <>
+            <section className="toy-details">
                 <ToyPreview toy={toy}/>
                 <section className="links">
                     <Link href={`/toy`} variant="outlined">Toys</Link>
@@ -49,11 +50,11 @@ export function ToyDetails() {
                         loggedInUser && loggedInUser.isAdmin &&
                         <>
                             <Link href={`/toy/${params.toyId}/edit`} variant="outlined">Edit</Link>
-                            <Button size="sm" className="remove" onClick={onRemoveToy}>Delete</Button>
+                            <Button size="md" className="remove" onClick={onRemoveToy}>Delete</Button>
                         </>
                     }
                 </section>
-            </>
+            </section>
         }
         </>
     )
