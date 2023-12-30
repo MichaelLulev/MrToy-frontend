@@ -19,12 +19,12 @@ export function App() {
 
     return (
         <>
-            <button onClick={() => setIsCheat(prev => ! prev)}>Cheat</button>
+            {/* <button onClick={() => setIsCheat(prev => ! prev)}>Cheat</button>
         {
             isCheat &&
             <Cheat />
         }
-            <hr />
+            <hr /> */}
             <Header />
             <main className="main-screen">
                 <Routes>

@@ -8,6 +8,7 @@ export function Home() {
 
     return (
         <section className="home-page">
+            <img src="/img/toy/homepage-2.jpg" alt="kids playing with dragons and castles" />
         </section>
     )
 }

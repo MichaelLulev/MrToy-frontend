@@ -10,7 +10,7 @@
 body {
   text-align: center;
   margin: 0;
-  height: 100dvh;
+  background: linear-gradient(to right bottom, #EC6EAD, #3494E6);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -36,8 +36,14 @@ button {
   gap: 0.5em;
 }
 
-.main-screen {
+#root {
+  min-height: 100dvh;
   display: grid;
+  grid-template-rows: auto 1fr;
+}
+#root .main-screen {
+  display: flex;
+  flex-direction: column;
 }
 
 .main-header {
@@ -143,7 +149,7 @@ button {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
   gap: 1em;
-  padding: 0.5em 0.75em;
+  padding: 0.5em 0.75em 0.75em 0.75em;
 }
 .toy-list .toy-preview-container {
   border: 1px solid gray;
@@ -164,8 +170,17 @@ button {
 }
 
 .home-page {
-  height: 100dvh;
-  background-image: url(/img/toy/homepage-2.jpg);
+  flex-grow: 1;
+  position: relative;
+  overflow: hidden;
+}
+.home-page img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: auto;
+  border-radius: 2em;
 }
 
 .filters {
