@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { Button, Link } from "@mui/joy"
 import { toyService } from "../services/toy.service"
-import { setErrorMessageText } from "../store/actions/app.actions"
+import { setErrorMessageText, setTitle } from "../store/actions/app.actions"
 import { removeToy } from "../store/actions/toy.actions"
 import { ToyPreview } from "../cmps/ToyPreview"
 import { userService } from '../services/user.service'
@@ -16,6 +16,8 @@ export function UserDetails() {
     console.log('params:', params)
     const navigate = useNavigate()
     const [user, setUser] = useState(undefined)
+
+    useEffect(() => setTitle('User Details'))
 
     useEffect(() => {
         userService.get(params.userId || loggedInUser?._id)
@@ -33,7 +35,6 @@ export function UserDetails() {
     
     return (
         <>
-            <h2>User Details</h2>
         {
             user === undefined &&
             <h3>Loading...</h3>

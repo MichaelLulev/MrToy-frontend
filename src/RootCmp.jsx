@@ -12,6 +12,8 @@ import { UserDetails } from './pages/UserDetails.jsx'
 import { Cheat } from './cmps/Cheat.jsx'
 import { useState } from 'react'
 import { AdminPage } from './pages/AdminPage.jsx'
+import { LoginForm } from './cmps/LoginForm.jsx'
+import { Login } from './cmps/Login.jsx'
 
 
 export function App() {
@@ -25,7 +27,6 @@ export function App() {
             <Cheat />
         }
             <hr /> */}
-            <Header />
             <main className="main-screen">
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -37,6 +38,8 @@ export function App() {
                     <Route path="/admin" element={<AdminPage />} />
                 </Routes>
             </main>
+            <LoginForm />
+            <Header />
             <Message />
         </>
     )

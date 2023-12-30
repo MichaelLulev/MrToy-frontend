@@ -4,8 +4,9 @@ import { useNavigate, useParams } from "react-router-dom"
 import { Button, Link } from "@mui/joy"
 import { toyService } from "../services/toy.service"
 import { setErrorMessageText, setTitle } from "../store/actions/app.actions"
-import { removeToy } from "../store/actions/toy.actions"
+import { removeToy, updateToyStock } from "../store/actions/toy.actions"
 import { ToyPreview } from "../cmps/ToyPreview"
+import { updateUser } from '../store/actions/user.actions'
 
 
 export function ToyDetails() {
@@ -24,6 +25,15 @@ export function ToyDetails() {
                 setErrorMessageText(err.response.data)
             })
     }, [params])
+
+    async function onAddToCart(toy) {
+        if (! toy.stock) return
+        const cartItems = [toy, ...loggedInUser.cartItems]
+        const cartTotal = Math.round(100 * (loggedInUser.cartTotal + toy.price)) / 100
+        const user = { ...loggedInUser, cartItems, cartTotal }
+        await Promise.all([updateToyStock(toy._id, -1), updateUser(user)])
+        setToy(prev => ({ ...prev, stock: prev.stock - 1}))
+    }
 
     async function onRemoveToy() {
         await removeToy(toy._id)
@@ -46,6 +56,7 @@ export function ToyDetails() {
                 <ToyPreview toy={toy}/>
                 <section className="links">
                     <Link href={`/toy`} variant="outlined">Toys</Link>
+                    <Button size="md" className="add-to-cart" disabled={! loggedInUser || ! toy.stock} onClick={() => onAddToCart(toy)}>Add to cart</Button>
                     {
                         loggedInUser && loggedInUser.isAdmin &&
                         <>

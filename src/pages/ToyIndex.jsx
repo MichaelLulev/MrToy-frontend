@@ -14,7 +14,7 @@ export function ToyIndex() {
     const sortBy = useSelector(state => state.toyModule.sortBy)
     const pageInfo = useSelector(state => state.toyModule.pageInfo)
 
-    useEffect(() => setTitle('Toy Index'), [])
+    useEffect(() => setTitle('Toy Catalog'))
 
     useEffect(() => {
         queryToys()

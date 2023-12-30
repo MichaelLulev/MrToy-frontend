@@ -4,7 +4,7 @@ import { setTitle } from '../store/actions/app.actions'
 
 export function Home() {
     
-    useEffect(() => setTitle('Toy Home'))
+    useEffect(() => setTitle('Toys & Drakes'))
 
     return (
         <section className="home-page">

@@ -5,6 +5,9 @@
 * {
   box-sizing: border-box;
   font-family: Georgia, "Times New Roman", Times, serif;
+  -webkit-user-drag: none;
+  -moz-window-dragging: none;
+  user-select: none;
 }
 
 body {
@@ -26,7 +29,11 @@ img {
 }
 
 button {
-  user-select: none;
+  transition: 100ms;
+}
+
+a {
+  transition: 100ms;
 }
 
 .links {
@@ -47,6 +54,7 @@ button {
 }
 
 .main-header {
+  grid-row: 1;
   position: sticky;
   top: 0;
   left: 0;
@@ -60,41 +68,60 @@ button {
   display: flex;
   flex-direction: row-reverse;
 }
-
-.login {
-  position: relative;
-}
-.login .login-form {
-  position: absolute;
-  width: 20em;
-  display: grid;
-  justify-items: center;
-  gap: 0.5em;
-  background-color: white;
-}
-.login .login-form label {
-  display: grid;
-  grid-template-columns: 7em auto;
-  align-items: center;
+.main-header .title {
+  width: max-content;
+  position: fixed;
+  left: 50%;
+  translate: -50% 0;
 }
 
-.logged-in-user {
+.login-container .logged-in-user {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5em;
 }
 
-.cart-container {
-  position: relative;
+.login-form-backdrop {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(128, 128, 128, 0.5);
 }
-.cart-container .cart {
-  position: absolute;
+.login-form-backdrop .login-form {
+  text-align: start;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: 20em;
+  display: grid;
+  justify-items: center;
+  gap: 0.5em;
+  background-color: white;
+  padding: 0.5em 0.75em;
+  border-radius: 1em;
 }
-.cart-container .cart ul {
+.login-form-backdrop .login-form label {
+  display: grid;
+  grid-template-columns: 7em auto;
+  align-items: center;
+}
+
+.cart {
+  position: fixed;
+  right: 0.75em;
+  top: 0.5em;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.5em 0.75em;
+  border-radius: 0.75em;
+}
+.cart ul {
   padding-inline-start: 1em;
 }
-.cart-container .cart li {
+.cart li {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,10 +132,17 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+.toy-filter .label-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 0.5em;
   flex-wrap: wrap;
 }
-.toy-filter > label {
+.toy-filter .label-container > label {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,10 +153,17 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+.toy-sort .label-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 0.5em;
   flex-wrap: wrap;
 }
-.toy-sort > label {
+.toy-sort .label-container > label {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -130,7 +171,6 @@ button {
 }
 
 .toy-page {
-  user-select: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,6 +197,7 @@ button {
   padding: 1em;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 1em;
 }
 .toy-list .toy-preview-container .toy-preview > * {
@@ -167,6 +208,16 @@ button {
 }
 .toy-list .toy-preview-container .links {
   justify-content: center;
+}
+
+.toy-preview-container {
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.6);
+  transition: 200ms;
+}
+.toy-preview-container:hover {
+  transform: scale(1.01);
+  box-shadow: 0px 6px 7px 3px rgba(0, 0, 0, 0.6);
 }
 
 .home-page {
@@ -191,15 +242,51 @@ button {
   padding: 0.5em 0.75em;
 }
 
+.toy-details {
+  width: fit-content;
+  align-self: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 0.5em 0.75em;
+  padding: 0.5em 0.75em;
+  border-radius: 1em;
+  box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.6);
+}
+.toy-details * {
+  margin: 0;
+}
+.toy-details .toy-preview {
+  padding: 0.5em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75em;
+}
+.toy-details img {
+  padding: 0.25em 0;
+  max-width: 30em;
+  border-radius: 1em;
+}
+.toy-details .links {
+  padding: 0.3em 0;
+}
+
 .toy-edit-form {
+  background-color: rgba(255, 255, 255, 0.5);
+  width: fit-content;
+  align-self: center;
   display: grid;
   grid-template-columns: auto;
   gap: 0.5em;
   justify-content: center;
+  padding: 0.5em 0.75em;
+  margin: 0.5em 0.75em;
+  border-radius: 1em;
 }
 .toy-edit-form > label {
   display: grid;
   grid-template-columns: 7em auto;
+  align-items: center;
+  justify-items: start;
 }
 .toy-edit-form > label div {
   width: 100%;

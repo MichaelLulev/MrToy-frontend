@@ -26,46 +26,44 @@ export function Cart() {
 
     if (! loggedInUser) return <></>
     return (
-        <section className="cart-container">
-            <section className="cart">
-                <h2>Cart</h2>
-                <p className="user-balance">Balance: <span>{loggedInUser.balance}</span></p>
-                <ul className="cart-items">
-                {
-                    loggedInUser.cartItems.map((toy, i) =>
-                        <li key={i}>
-                            <span>{toy.name} {toy.price} </span>
-                            <Button
-                                sx={{
-                                    display: 'flex',
-                                    justifyItems: 'center',
-                                    alignItems: 'center',
-                                    width: '1.75em',
-                                    height: '1.75em',
-                                    minHeight: 0,
-                                    margin: 0,
-                                    padding: 0,
-                                    borderRadius: '2em',
-                                }}
-                                className="remove-item"
-                                onClick={() => onRemoveItem(toy, i)}
-                            >
-                                X
-                            </Button>
-                        </li>
-                    )
-                }
-                </ul>
-                <p className="cart-total">Total: <span>{loggedInUser.cartTotal}</span></p>
-                <Button
-                    size="sm"
-                    className="buy"
-                    disabled={! loggedInUser.cartItems.length || loggedInUser.balance < loggedInUser.cartTotal}
-                    onClick={onBuy}
-                >
-                    Buy
-                </Button>
-            </section>
+        <section className="cart">
+            <h2>Cart</h2>
+            <p className="user-balance">Balance: <span>{loggedInUser.balance}</span></p>
+            <ul className="cart-items">
+            {
+                loggedInUser.cartItems.map((toy, i) =>
+                    <li key={i}>
+                        <span>{toy.name} {toy.price} </span>
+                        <Button
+                            sx={{
+                                display: 'flex',
+                                justifyItems: 'center',
+                                alignItems: 'center',
+                                width: '1.75em',
+                                height: '1.75em',
+                                minHeight: 0,
+                                margin: 0,
+                                padding: 0,
+                                borderRadius: '2em',
+                            }}
+                            className="remove-item"
+                            onClick={() => onRemoveItem(toy, i)}
+                        >
+                            X
+                        </Button>
+                    </li>
+                )
+            }
+            </ul>
+            <p className="cart-total">Total: <span>{loggedInUser.cartTotal}</span></p>
+            <Button
+                size="sm"
+                className="buy"
+                disabled={! loggedInUser.cartItems.length || loggedInUser.balance < loggedInUser.cartTotal}
+                onClick={onBuy}
+            >
+                Buy
+            </Button>
         </section>
     )
 }

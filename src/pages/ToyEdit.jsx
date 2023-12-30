@@ -81,6 +81,7 @@ export function ToyEdit() {
                             name="name"
                             value={toy.name}
                             onChange={onChangeToy}
+                            required
                         />
                     </label>
                     <label>
@@ -91,7 +92,8 @@ export function ToyEdit() {
                             value={toy.description}
                             rows="5"
                             onChange={onChangeToy}
-                        ></Textarea>
+                            required
+                            ></Textarea>
                     </label>
                     <label>
                         <span>Price: </span>
@@ -152,12 +154,12 @@ export function ToyEdit() {
                     </label>
                     <label>
                         <span>New label: </span>
-                        <Input />
+                        <Input disabled/>
                     </label>
                     <section className="links">
                         <Link href={`/toy/${toy._id}`} variant="outlined">Details</Link>
-                        <Button size="md" className="clear" onClick={onClearToy}>Clear</Button>
                         <Button size="md" className="reset" onClick={onResetToy}>Reset</Button>
+                        <Button size="md" className="clear" onClick={onClearToy}>Clear</Button>
                         <Button size="md" className="submit" type="submit">Submit</Button>
                     </section>
                 </form>

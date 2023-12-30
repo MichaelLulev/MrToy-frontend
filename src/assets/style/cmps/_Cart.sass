@@ -1,8 +1,11 @@
-.cart-container
-    position: relative
-    .cart
-        position: absolute
-        ul
-            padding-inline-start: 1em
-        li
-            @include flex
+.cart
+    position: fixed
+    right: $side-padding
+    top: $vertical-padding
+    background-color: rgba(white, 0.8)
+    padding: $vertical-padding $side-padding
+    border-radius: 0.75em
+    ul
+        padding-inline-start: 1em
+    li
+        @include flex
