@@ -22,3 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+all_frontend_files_content.txt
+.gitignore

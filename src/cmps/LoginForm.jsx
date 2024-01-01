@@ -1,16 +1,27 @@
 import { useSelector } from 'react-redux'
 import { userService } from '../services/user.service'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Input } from '@mui/joy'
 import { setErrorMessageText, setInfoMessageText, setIsShowLogin, setIsSignup } from '../store/actions/app.actions'
-import { login, signup } from '../store/actions/user.actions'
+import { login, queryUsers, signup } from '../store/actions/user.actions'
 
 
 
 export function LoginForm() {
     const isShowLogin = useSelector(state => state.appModule.isShowLogin)
     const isSignup = useSelector(state => state.appModule.isSignup)
+    const users = useSelector(state => state.userModule.users)
     const [formUser, setFormUser] = useState(userService.getNewUser())
+
+    useEffect(() => {
+        queryUsers()
+    })
+
+    function onSelectUser(ev) {
+        const username = ev.target.value
+        const password = users.find(user => user.username = username)?.password
+        setFormUser(prev => ({ ...prev, username, password }))
+    }
 
     function onChangeFormUser(ev) {
         const name = ev.target.name
@@ -61,6 +72,17 @@ export function LoginForm() {
                             onChange={onChangeFormUser}
                             required
                         />
+                    </label>
+                }
+                {
+                    ! isSignup &&
+                    <label className="cheat-users">
+                        <span>Cheat users: </span>
+                        <select name="users" onChange={onSelectUser}>
+                        {
+                            users.map(user => <option>{user.username}</option>)
+                        }
+                        </select>
                     </label>
                 }
                     <label>

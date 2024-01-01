@@ -21,7 +21,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .MuiLink-root.MuiLink-root {
+  padding: 0.25em 0.4em;
   margin-inline: 0;
+  border-radius: 0.4em;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+.MuiLink-root.MuiLink-root:hover {
+  text-decoration: none;
 }
 
 img {
@@ -260,6 +266,9 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 0.75em;
+}
+.toy-details .toy-preview p {
+  max-width: 75em;
 }
 .toy-details img {
   padding: 0.25em 0;
