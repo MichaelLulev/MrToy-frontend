@@ -16,7 +16,7 @@ console.log('./src/cmps/LoginForm.jsx')
 
     function onSelectUser(ev) {
         const username = ev.target.value
-        const password = users.find(user => user.username = username)?.password
+        const password = users.find(user => user.username === username)?.password
         setFormUser(prev => ({ ...prev, username, password }))
     }
 
@@ -95,6 +95,7 @@ console.log('./src/cmps/LoginForm.jsx')
                         <span>Password: </span>
                         <Input
                             name="password"
+                            type="password"
                             value={formUser.password}
                             onChange={onChangeFormUser}
                             required
