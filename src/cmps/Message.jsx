@@ -5,6 +5,7 @@ import { setMessage } from "../store/actions/app.actions"
 
 
 export function Message() {
+console.log('./src/cmps/Message.jsx')
     const message = useSelector(state => state.appModule.message)
     const timeoutId = useRef()
 

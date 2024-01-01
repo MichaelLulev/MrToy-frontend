@@ -5,6 +5,7 @@ import { queryUsers } from '../store/actions/user.actions'
 
 
 export function Cheat() {
+console.log('./src/cmps/Cheat.jsx')
     const users = useSelector(state => state.userModule.users)
     console.log('users:', users)
 

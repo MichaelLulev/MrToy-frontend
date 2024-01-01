@@ -8,14 +8,11 @@ import { login, queryUsers, signup } from '../store/actions/user.actions'
 
 
 export function LoginForm() {
+console.log('./src/cmps/LoginForm.jsx')
     const isShowLogin = useSelector(state => state.appModule.isShowLogin)
     const isSignup = useSelector(state => state.appModule.isSignup)
     const users = useSelector(state => state.userModule.users)
     const [formUser, setFormUser] = useState(userService.getNewUser())
-
-    useEffect(() => {
-        queryUsers()
-    })
 
     function onSelectUser(ev) {
         const username = ev.target.value

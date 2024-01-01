@@ -10,6 +10,7 @@ import { setErrorMessageText, setTitle } from "../store/actions/app.actions.js"
 
 
 export function ToyIndex() {
+console.log('./src/pages/ToyIndex.jsx')
     const filterBy = useSelector(state => state.toyModule.filterBy)
     const sortBy = useSelector(state => state.toyModule.sortBy)
     const pageInfo = useSelector(state => state.toyModule.pageInfo)

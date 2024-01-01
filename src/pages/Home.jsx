@@ -3,6 +3,7 @@ import { setTitle } from '../store/actions/app.actions'
 
 
 export function Home() {
+console.log('./src/pages/Home.jsx')
     
     useEffect(() => setTitle('Toys & Drakes'))
 

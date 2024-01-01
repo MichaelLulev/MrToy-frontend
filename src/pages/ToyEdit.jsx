@@ -9,6 +9,7 @@ import { setLabels, updateToy } from "../store/actions/toy.actions"
 
 
 export function ToyEdit() {
+console.log('./src/pages/ToyEdit.jsx')
     const loggedInUser = useSelector(state => state.userModule.loggedInUser)
     const labels = useSelector(state => state.toyModule.labels)
     const params = useParams()

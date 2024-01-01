@@ -10,6 +10,7 @@ import { updateUser } from '../store/actions/user.actions'
 
 
 export function ToyDetails() {
+console.log('./src/pages/ToyDetails.jsx')
     const loggedInUser = useSelector(state => state.userModule.loggedInUser)
     const params = useParams()
     const navigate = useNavigate()

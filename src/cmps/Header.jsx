@@ -7,6 +7,7 @@ import { Cart } from './Cart.jsx'
 
 
 export function Header() {
+console.log('./src/cmps/Header.jsx')
     const loggedInUser = useSelector(state => state.userModule.loggedInUser)
     const title = useSelector(state => state.appModule.title)
     const isShowCart = useSelector(state => state.appModule.isShowCart)

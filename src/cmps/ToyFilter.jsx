@@ -7,6 +7,7 @@ import { setFilterBy } from "../store/actions/toy.actions"
 
 
 export function ToyFilter() {
+console.log('./src/cmps/ToyFilter.jsx')
     const filterBy = useSelector(state => state.toyModule.filterBy)
     const labels = useSelector(state => state.toyModule.labels)
     const [_filterBy, _setFilterBy] = useState(filterBy)

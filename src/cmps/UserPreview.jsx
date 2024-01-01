@@ -2,6 +2,7 @@
 
 
 export function UserPreview({ user }) {
+console.log('./src/cmps/UserPreview.jsx')
     console.log('user:', user)
     
     return (

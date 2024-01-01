@@ -10,14 +10,18 @@ import { ToyEdit } from "./pages/ToyEdit.jsx"
 import { Message } from "./cmps/Message.jsx"
 import { UserDetails } from './pages/UserDetails.jsx'
 import { Cheat } from './cmps/Cheat.jsx'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AdminPage } from './pages/AdminPage.jsx'
 import { LoginForm } from './cmps/LoginForm.jsx'
 import { Login } from './cmps/Login.jsx'
+import { queryUsers } from './store/actions/user.actions.js'
 
 
 export function App() {
+console.log('./src/RootCmp.jsx')
     const [isCheat, setIsCheat] = useState(false)
+
+    useEffect(() => queryUsers())
 
     return (
         <>

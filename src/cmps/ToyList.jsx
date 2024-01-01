@@ -6,6 +6,7 @@ import { updateToyStock } from '../store/actions/toy.actions'
 
 
 export function ToyList() {
+console.log('./src/cmps/ToyList.jsx')
     const loggedInUser = useSelector(state => state.userModule.loggedInUser)
     const toys = useSelector(state => state.toyModule.toyPage.toys)
 

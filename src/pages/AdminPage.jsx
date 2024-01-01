@@ -7,6 +7,7 @@ import { setErrorMessageText, setTitle } from '../store/actions/app.actions.js'
 
 
 export function AdminPage() {
+console.log('./src/pages/AdminPage.jsx')
     const loggedInUser = useSelector(state => state.userModule.loggedInUser)
     const [user, setUser] = useState(undefined)
 

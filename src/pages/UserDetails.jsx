@@ -11,6 +11,7 @@ import { UserPreview } from '../cmps/UserPreview'
 
 
 export function UserDetails() {
+console.log('./src/pages/UserDetails.jsx')
     const loggedInUser = useSelector(state => state.userModule.loggedInUser)
     const params = useParams()
     console.log('params:', params)

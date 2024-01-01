@@ -5,6 +5,7 @@ import { Checkbox, Select, Option } from "@mui/joy"
 
 
 export function ToySort() {
+console.log('./src/cmps/ToySort.jsx')
     const sortBy = useSelector(state => state.toyModule.sortBy)
 
     function onChangeSortField(syntEv, value) {

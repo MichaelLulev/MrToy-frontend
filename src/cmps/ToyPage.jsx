@@ -4,6 +4,7 @@ import { Button, Option, Select } from "@mui/joy"
 
 
 export function ToyPage() {
+console.log('./src/cmps/ToyPage.jsx')
     const toyPage = useSelector(state => state.toyModule.toyPage)
     const pageInfo = useSelector(state => state.toyModule.pageInfo)
     const pageNum = toyPage.pageNum

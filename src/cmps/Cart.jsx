@@ -6,6 +6,7 @@ import { Button } from "@mui/joy";
 
 
 export function Cart() {
+console.log('./src/cmps/Cart.jsx')
     const loggedInUser = useSelector(state => state.userModule.loggedInUser)
 
     function onBuy() {

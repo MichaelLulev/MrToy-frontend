@@ -2,6 +2,7 @@
 
 
 export function ToyPreview({ toy }) {
+console.log('./src/cmps/ToyPreview.jsx')
     
     return (
         <article className="toy-preview">
